@@ -18,8 +18,8 @@ const Home = () => {
           <p>With each new addition to the franchise come new characters, planets, species and starships.</p> <br />
           <p>Struggling to keep track of all there is to know the fans look for a hero. A one-stop resource. Their go-to place for all they need to know about Star Wars.</p> <br />
           <p>Among all the chaos there has emerged A New Hope.......</p><b />
-          <p>This website</p><br />
-          <p>Click the links above for all you need to know</p>
+          <p>This website.</p><br />
+          <p>Click the links above for all you need to know.</p>
         </div>
       </div>
     </div>
