@@ -1,0 +1,10 @@
+.starships {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 30px;
+}
+
+.starships article {
+  padding: 0 20px;
+}

@@ -43,9 +43,7 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    console.log(this.state.route);
     this.setState({route: route});
-    console.log(this.state.route);
   }
 
   renderSwitch(route) {
