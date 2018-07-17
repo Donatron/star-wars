@@ -1,15 +1,15 @@
 import React from 'react';
-import Character from './Character';
+import Card from './Card';
 import '../Characters/Character.css';
 
-const CharacterList = ({ people }) => {
+const CardList = ({ people, route }) => {
   return (
     <div>
       <div className="characters">
         {
           people.map((person, i) => {
             return (
-              <Character
+              <Card
                 key={people[i].name}
                 id={i+1}
                 name={people[i].name}
@@ -22,4 +22,4 @@ const CharacterList = ({ people }) => {
   );
 }
 
-export default CharacterList;
+export default CardList;

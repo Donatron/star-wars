@@ -3,7 +3,9 @@ import Particles from 'react-particles-js';
 import Home from '../components/Home/Home'
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
+import CardList from '../components/Card/CardList';
 import CharacterList from '../components/Characters/CharacterList';
+import Character from '../components/Characters/Character';
 import FilmList from '../components/Films/FilmList';
 import PlanetList from '../components/Planets/PlanetList';
 import SpeciesList from '../components/Species/SpeciesList';
@@ -38,7 +40,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      route: 'home'
+      route: 'home',
+      people: []
     }
   }
 
@@ -51,7 +54,7 @@ class App extends Component {
       case 'home':
         return <Home />;
       case 'characters':
-        return <CharacterList />;
+        return <CharacterList people={this.state.people}/>;
       case 'films':
         return <FilmList />;
       case 'planets':
@@ -69,7 +72,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App tc">
         <Particles className="particles"
           params={particlesOptions}/>
         <Navigation onRouteChange={this.onRouteChange}/>
@@ -78,6 +81,17 @@ class App extends Component {
         }
       </div>
     );
+  }
+
+  componentDidMount() {
+    fetch('https://swapi.co/api/people')
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        this.setState({ people: data.results})
+      })
+      .catch('There was an error somewhere along the line');
   }
 }
 
