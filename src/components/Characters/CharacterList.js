@@ -4,8 +4,7 @@ import '../Characters/Character.css';
 
 const CharacterList = ({ people }) => {
   return (
-    <div>
-      <div className="characters">
+      <div className="tc white center characters">
         {
           people.map((person, i) => {
             return (
@@ -18,7 +17,6 @@ const CharacterList = ({ people }) => {
           })
         }
       </div>
-    </div>
   );
 }
 

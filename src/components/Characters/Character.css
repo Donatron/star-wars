@@ -1,6 +1,6 @@
 img {
   height: auto;
-  width: 250px;
+  max-width: 100%;
 }
 
 .characters {
