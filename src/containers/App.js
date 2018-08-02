@@ -87,7 +87,6 @@ class App extends Component {
     let currentComponent = this;
 
     async function GetData(url){
-      console.log('This function is running')
       let response = await fetch(url);
       if (!response.ok) {
         throw Error(response.statusText);
@@ -96,44 +95,22 @@ class App extends Component {
       let results = json.results;
       let i = 1;
       while (i < 2) {
-        if (response.next == null) {
+        if (json.next == null) {
           i++;
         } else {
           response = await fetch(json.next);
           if (!response.ok) {
             throw Error(response.statusText);
           }
-          json = response.json();
+          json = await response.json();
           let concatArray = results.concat(json.results);
           results = concatArray;
         }
       }
       currentComponent.setState({ people: results });
-      console.log(currentComponent.people);
     }
 
     GetData('https://swapi.co/api/people');
-
-    // fetch('https://swapi.co/api/people')
-    //   .then(res => {
-    //     return res.json()
-    //   })
-    //   .then(data => {
-    //     this.setState({ people: data.results})
-    //     var pages = Math.round(data.count/10);
-    //     var results = [];
-    //     for (var i=1; i<=pages; i++) {
-    //       fetch(`https://swapi.co/api/people?page=${i}`)
-    //       .then(response => {
-    //         return response.json()
-    //       })
-    //       .then(d => {
-    //         results.push(d)
-    //       })
-    //     }
-    //     console.log(results)
-    //   })
-    //   .catch('There was an error somewhere along the line');
   }
 }
 
