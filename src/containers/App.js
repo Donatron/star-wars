@@ -41,7 +41,12 @@ class App extends Component {
     super()
     this.state = {
       route: 'home',
-      people: []
+      people: [],
+      films: [],
+      planets: [],
+      starships: [],
+      vehicles:[],
+      species: []
     }
   }
 
@@ -58,7 +63,8 @@ class App extends Component {
       case 'films':
         return <FilmList />;
       case 'planets':
-        return <PlanetList />;
+        return <PlanetList
+          planets={this.state.planets}/>;
       case 'vehicles':
         return <VehicleList />;
       case 'starships':
@@ -86,7 +92,7 @@ class App extends Component {
   componentDidMount() {
     let currentComponent = this;
 
-    async function GetData(url){
+    async function GetData(url, saveToArray){
       let response = await fetch(url);
       if (!response.ok) {
         throw Error(response.statusText);
@@ -107,10 +113,15 @@ class App extends Component {
           results = concatArray;
         }
       }
-      currentComponent.setState({ people: results });
+      currentComponent.setState({ [saveToArray]: results });
     }
 
-    GetData('https://swapi.co/api/people');
+    GetData('https://swapi.co/api/people', 'people');
+    GetData('https://swapi.co/api/films', 'films');
+    GetData('https://swapi.co/api/planets', 'planets');
+    GetData('https://swapi.co/api/starships', 'starships');
+    GetData('https://swapi.co/api/vehicles', 'vehicles');
+    GetData('https://swapi.co/api/species', 'vehicles');
   }
 }
 

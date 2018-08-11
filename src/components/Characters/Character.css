@@ -13,3 +13,7 @@ img {
 .characters article {
   padding: 0 20px;
 }
+
+.loader {
+  color: yellow;
+}
