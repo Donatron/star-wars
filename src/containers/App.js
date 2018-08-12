@@ -59,18 +59,29 @@ class App extends Component {
       case 'home':
         return <Home />;
       case 'characters':
-        return <CharacterList people={this.state.people}/>;
+        return <CharacterList
+          people={this.state.people}
+          />;
       case 'films':
-        return <FilmList />;
+        return <FilmList
+          films={this.state.films}
+          />;
       case 'planets':
         return <PlanetList
-          planets={this.state.planets}/>;
+          planets={this.state.planets}
+          />;
       case 'vehicles':
-        return <VehicleList />;
+        return <VehicleList
+          vehicles={this.state.vehicles}
+          />;
       case 'starships':
-        return <StarshipList />;
+        return <StarshipList
+          starships={this.state.starships}
+          />;
       case 'species':
-        return <SpeciesList />;
+        return <SpeciesList
+          species={this.state.species}
+          />;
       default:
         return <Home />;
     }
@@ -114,6 +125,7 @@ class App extends Component {
         }
       }
       currentComponent.setState({ [saveToArray]: results });
+      console.log([saveToArray]);
     }
 
     GetData('https://swapi.co/api/people', 'people');
@@ -121,7 +133,7 @@ class App extends Component {
     GetData('https://swapi.co/api/planets', 'planets');
     GetData('https://swapi.co/api/starships', 'starships');
     GetData('https://swapi.co/api/vehicles', 'vehicles');
-    GetData('https://swapi.co/api/species', 'vehicles');
+    GetData('https://swapi.co/api/species', 'species');
   }
 }
 
