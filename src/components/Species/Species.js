@@ -2,8 +2,9 @@ import React from 'react';
 
 const Species = ({ name, id }) => {
   return (
-    <article className="w-100 center">
-      <p>{id}:- {name}</p>
+    <article className="mv4 mw5 center">
+      <img src={require(`../../assets/img/species/${id}.jpg`)} className="db br2 br--top grow" alt="star wars species." />
+      <p>{name}</p><br></br>
     </article>
   );
 }
