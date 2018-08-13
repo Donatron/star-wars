@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-import Home from '../components/Home/Home'
+import Home from '../components/Home/Home';
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
 import CardList from '../components/Card/CardList';

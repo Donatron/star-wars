@@ -1,7 +1,7 @@
 import React from 'react';
-import Vehicle from './Vehicle'
-import Loader from '../Loader/loader'
-import './Vehicles.css'
+import Vehicle from './Vehicle';
+import Loader from '../Loader/loader';
+import './Vehicles.css';
 
 const VehicleList = ({ vehicles }) => {
   if (vehicles.length === 0) {
