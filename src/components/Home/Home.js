@@ -4,9 +4,6 @@ import './Home.css';
 const Home = () => {
   return (
     <div className="tc home">
-      <audio preload="auto" autoPlay>
-        <source src="../assets/audio/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg" />
-      </audio>
 
       <section className="intro pa3 pa5-ns">A long time ago, in a galaxy far, far away....</section>
       <div id="board">

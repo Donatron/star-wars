@@ -5,7 +5,7 @@ import Loader from '../Loader/loader';
 
 const CharacterList = ({ people }) => {
 
-  if (people.length === 0) {
+  if (!people || people.length === 0) {
     return (
       <Loader />
     );
@@ -16,9 +16,9 @@ const CharacterList = ({ people }) => {
               people.map((person, i) => {
                 return (
                   <Character
-                    key={people[i].name}
+                    key={person.name}
                     id={i+1}
-                    name={people[i].name}
+                    name={person.name}
                   />
                 );
               })

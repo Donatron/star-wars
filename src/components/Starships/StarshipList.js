@@ -17,9 +17,9 @@ const StarshipList = ({ starships }) => {
           starships.map((starship, i) => {
             return (
               <Starship
-                key={starships[i].name}
+                key={starship.name}
                 id={i+1}
-                name={starships[i].name}
+                name={starship.name}
               />
             )
           })

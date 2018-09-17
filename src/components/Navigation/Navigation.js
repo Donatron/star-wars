@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 import Logo from '../Logo/Logo';
 
@@ -12,6 +13,7 @@ const Navigation = ({ onRouteChange }) => {
         ><Logo /></a>
       <nav className="pa1 pa2-ns">
         <div className="tc pb3">
+          <Link to='/characters'>New Link</Link>
           <a
             className="link dim f6 f4-ns dib mr4 ttu"
             title="People"

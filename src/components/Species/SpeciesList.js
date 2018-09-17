@@ -16,9 +16,9 @@ const SpeciesList = ({ species }) => {
           species.map((specie, i) => {
             return (
               <Species
-                key={species[i].name}
+                key={specie.name}
                 id={i+1}
-                name={species[i].name}
+                name={specie.name}
               />
             )
           })

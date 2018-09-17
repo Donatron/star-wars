@@ -16,9 +16,9 @@ const PlanetList = ({ planets }) => {
               if (i !== 26) {
                 return (
                   <Planet
-                    key={planets[i].name}
+                    key={planet.name}
                     id={i+1}
-                    name={planets[i].name}
+                    name={planet.name}
                   />
                 );
               }

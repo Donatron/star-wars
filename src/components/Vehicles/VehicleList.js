@@ -16,9 +16,9 @@ const VehicleList = ({ vehicles }) => {
               if (i !== 26) {
                 return (
                   <Vehicle
-                    key={vehicles[i].name}
+                    key={vehicle.name}
                     id={i+1}
-                    name={vehicles[i].name}
+                    name={vehicle.name}
                   />
                 );
               }

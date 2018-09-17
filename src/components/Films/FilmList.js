@@ -16,9 +16,9 @@ const FilmList = ({ films }) => {
           films.map((film, i) => {
             return (
               <Film
-                key={films[i].title}
+                key={film.title}
                 id={i+1}
-                name={films[i].title}
+                name={film.title}
               />
             )
           })

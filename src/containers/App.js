@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Particles from 'react-particles-js';
 import Home from '../components/Home/Home';
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
-import CardList from '../components/Card/CardList';
+import SearchBox from '../components/Search/SearchBox';
 import CharacterList from '../components/Characters/CharacterList';
-import Character from '../components/Characters/Character';
 import FilmList from '../components/Films/FilmList';
 import PlanetList from '../components/Planets/PlanetList';
 import SpeciesList from '../components/Species/SpeciesList';
@@ -46,15 +46,30 @@ class App extends Component {
       planets: [],
       starships: [],
       vehicles:[],
-      species: []
+      species: [],
+      searchBox: false,
+      searchField: ''
     }
   }
 
   onRouteChange = (route) => {
+    if (route === 'home') {
+      this.setState({searchBox: false});
+    } else {
+      this.setState({searchBox: true});
+    }
     this.setState({route: route});
   }
 
-  renderSwitch(route) {
+  onSearchChange = (event) => {
+    this.setState({ searchField: event.target.value })
+    // const filteredResults = this.state.people.filter(results => {
+    //   return results.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+    // })
+    // console.log(filteredResults);
+  }
+
+  renderSwitch (route) {
     switch(route) {
       case 'home':
         return <Home />;
@@ -88,14 +103,31 @@ class App extends Component {
   }
 
   render() {
+    const viewSearchBox = this.state.searchBox;
+    let searchBoxComponent;
+
+    if(viewSearchBox) {
+      searchBoxComponent = <SearchBox
+                             search={this.state.route}
+                             searchChange={this.onSearchChange}
+                           />;
+    }
+
     return (
       <div className="App tc">
         <Particles className="particles"
           params={particlesOptions}/>
-        <Navigation onRouteChange={this.onRouteChange}/>
-        {
-          this.renderSwitch(this.state.route)
-        }
+        <BrowserRouter>
+          <div>
+            <Navigation onRouteChange={this.onRouteChange}/>
+            { searchBoxComponent }
+
+            <Switch>
+              <Route path="/characters" component={CharacterList} />
+              <Route path="/" component={Home} />
+            </Switch>
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
@@ -125,15 +157,14 @@ class App extends Component {
         }
       }
       currentComponent.setState({ [saveToArray]: results });
-      console.log([saveToArray]);
     }
 
-    GetData('https://swapi.co/api/people', 'people');
-    GetData('https://swapi.co/api/films', 'films');
-    GetData('https://swapi.co/api/planets', 'planets');
-    GetData('https://swapi.co/api/starships', 'starships');
-    GetData('https://swapi.co/api/vehicles', 'vehicles');
-    GetData('https://swapi.co/api/species', 'species');
+    // GetData('https://swapi.co/api/people', 'people');
+    // GetData('https://swapi.co/api/films', 'films');
+    // GetData('https://swapi.co/api/planets', 'planets');
+    // GetData('https://swapi.co/api/starships', 'starships');
+    // GetData('https://swapi.co/api/vehicles', 'vehicles');
+    // GetData('https://swapi.co/api/species', 'species');
   }
 }
 
