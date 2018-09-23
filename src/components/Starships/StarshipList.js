@@ -4,7 +4,7 @@ import Loader from '../Loader/loader';
 import './Starships.css';
 
 const StarshipList = ({ starships }) => {
-  if (starships.length === 0) {
+  if (!starships || starships.length === 0) {
     return (
       <Loader />
     )
@@ -12,17 +12,17 @@ const StarshipList = ({ starships }) => {
 
     return (
       <div className="tc white center starships">
-
+        startships list
         {
-          starships.map((starship, i) => {
-            return (
-              <Starship
-                key={starship.name}
-                id={i+1}
-                name={starship.name}
-              />
-            )
-          })
+          // starships.map((starship, i) => {
+          //   return (
+          //     <Starship
+          //       key={starship.name}
+          //       id={i+1}
+          //       name={starship.name}
+          //     />
+          //   )
+          // })
         }
 
       </div>

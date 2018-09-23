@@ -4,24 +4,24 @@ import Loader from '../Loader/loader';
 import './Films.css'
 
 const FilmList = ({ films }) => {
-  if (films.length === 0) {
+  if (!films || films.length === 0) {
     return (
       <Loader />
     )
   } else {
     return (
       <div className="tc white center films">
-
+Films list
         {
-          films.map((film, i) => {
-            return (
-              <Film
-                key={film.title}
-                id={i+1}
-                name={film.title}
-              />
-            )
-          })
+          // films.map((film, i) => {
+          //   return (
+          //     <Film
+          //       key={film.title}
+          //       id={i+1}
+          //       name={film.title}
+          //     />
+          //   )
+          // })
         }
 
       </div>

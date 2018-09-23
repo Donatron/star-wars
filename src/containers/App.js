@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Promise from 'redux-promise';
 import Particles from 'react-particles-js';
 import Home from '../components/Home/Home';
+
+import reducers from '../reducers';
+
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
 import SearchBox from '../components/Search/SearchBox';
@@ -11,6 +17,8 @@ import PlanetList from '../components/Planets/PlanetList';
 import SpeciesList from '../components/Species/SpeciesList';
 import StarshipList from '../components/Starships/StarshipList';
 import VehicleList from '../components/Vehicles/VehicleList';
+
+const createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
 
 const particlesOptions = {
   particles: {
@@ -40,13 +48,6 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      route: 'home',
-      people: [],
-      films: [],
-      planets: [],
-      starships: [],
-      vehicles:[],
-      species: [],
       searchBox: false,
       searchField: ''
     }
@@ -69,39 +70,6 @@ class App extends Component {
     // console.log(filteredResults);
   }
 
-  renderSwitch (route) {
-    switch(route) {
-      case 'home':
-        return <Home />;
-      case 'characters':
-        return <CharacterList
-          people={this.state.people}
-          />;
-      case 'films':
-        return <FilmList
-          films={this.state.films}
-          />;
-      case 'planets':
-        return <PlanetList
-          planets={this.state.planets}
-          />;
-      case 'vehicles':
-        return <VehicleList
-          vehicles={this.state.vehicles}
-          />;
-      case 'starships':
-        return <StarshipList
-          starships={this.state.starships}
-          />;
-      case 'species':
-        return <SpeciesList
-          species={this.state.species}
-          />;
-      default:
-        return <Home />;
-    }
-  }
-
   render() {
     const viewSearchBox = this.state.searchBox;
     let searchBoxComponent;
@@ -117,54 +85,26 @@ class App extends Component {
       <div className="App tc">
         <Particles className="particles"
           params={particlesOptions}/>
-        <BrowserRouter>
-          <div>
-            <Navigation onRouteChange={this.onRouteChange}/>
-            { searchBoxComponent }
+        <Provider store={createStoreWithMiddleware(reducers)} >
+          <BrowserRouter>
+            <div>
+              <Navigation onRouteChange={this.onRouteChange}/>
+              { searchBoxComponent }
 
-            <Switch>
-              <Route path="/characters" component={CharacterList} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </div>
-        </BrowserRouter>
+              <Switch>
+                <Route path="/characters" component={CharacterList} />
+                <Route path="/films" component={FilmList} />
+                <Route path="/planets" component={PlanetList} />
+                <Route path="/vehicles" component={VehicleList} />
+                <Route path="/starships" component={StarshipList} />
+                <Route path="/species" component={SpeciesList} />
+                <Route path="/" component={Home} />
+              </Switch>
+            </div>
+          </BrowserRouter>
+        </Provider>
       </div>
     );
-  }
-
-  componentDidMount() {
-    let currentComponent = this;
-
-    async function GetData(url, saveToArray){
-      let response = await fetch(url);
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      let json = await response.json();
-      let results = json.results;
-      let i = 1;
-      while (i < 2) {
-        if (json.next == null) {
-          i++;
-        } else {
-          response = await fetch(json.next);
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          json = await response.json();
-          let concatArray = results.concat(json.results);
-          results = concatArray;
-        }
-      }
-      currentComponent.setState({ [saveToArray]: results });
-    }
-
-    // GetData('https://swapi.co/api/people', 'people');
-    // GetData('https://swapi.co/api/films', 'films');
-    // GetData('https://swapi.co/api/planets', 'planets');
-    // GetData('https://swapi.co/api/starships', 'starships');
-    // GetData('https://swapi.co/api/vehicles', 'vehicles');
-    // GetData('https://swapi.co/api/species', 'species');
   }
 }
 

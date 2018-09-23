@@ -4,24 +4,24 @@ import Loader from '../Loader/loader';
 import './Species.css'
 
 const SpeciesList = ({ species }) => {
-  if (species.length === 0) {
+  if (!species || species.length === 0) {
     return (
       <Loader />
     )
   } else {
     return (
       <div className="tc white species">
-
+        species list
         {
-          species.map((specie, i) => {
-            return (
-              <Species
-                key={specie.name}
-                id={i+1}
-                name={specie.name}
-              />
-            )
-          })
+          // species.map((specie, i) => {
+          //   return (
+          //     <Species
+          //       key={specie.name}
+          //       id={i+1}
+          //       name={specie.name}
+          //     />
+          //   )
+          // })
         }
 
       </div>

@@ -6,44 +6,29 @@ import Logo from '../Logo/Logo';
 const Navigation = ({ onRouteChange }) => {
   return (
     <div>
-      <a
-        className="link dim b f1 f-headline-ns tc db mt3 mb0-ns"
-        title="Home"
-        onClick={() => onRouteChange('home')}
-        ><Logo /></a>
+      <Link to="/">
+        <Logo />
+      </Link>
       <nav className="pa1 pa2-ns">
         <div className="tc pb3">
-          <Link to='/characters'>New Link</Link>
-          <a
-            className="link dim f6 f4-ns dib mr4 ttu"
-            title="People"
-            onClick={() => onRouteChange('characters')}
-          >Characters</a>
-          <a
-            className="link dim f6 f4-ns dib mr4 ttu"
-            title="Films"
-            onClick={() => onRouteChange('films')}
-          >Films</a>
-          <a
-            className="link dim f6 f4-ns dib mr4 ttu"
-            title="Planets"
-            onClick={() => onRouteChange('planets')}
-          >Planets</a>
-          <a
-            className="link dim f6 f4-ns dib mr4 ttu"
-            title="Vehicles"
-            onClick={() => onRouteChange('vehicles')}
-          >Vehicles</a>
-          <a
-            className="link dim f6 f4-ns dib mr4 ttu"
-            title="Starships"
-            onClick={() => onRouteChange('starships')}
-          >Starships</a>
-          <a
-            className="link dim f6 f4-ns dib ttu"
-            title="Species"
-            onClick={() => onRouteChange('species')}
-          >Species</a>
+          <Link to='/characters'
+            className="link dim f6 f4-ns dib mr4 ttu">
+            Characters</Link>
+          <Link to='/films'
+            className="link dim f6 f4-ns dib mr4 ttu">
+            Films</Link>
+          <Link to='/planets'
+            className="link dim f6 f4-ns dib mr4 ttu">
+            Planets</Link>
+          <Link to='/vehicles'
+            className="link dim f6 f4-ns dib mr4 ttu">
+            Vehicles</Link>
+          <Link to='/starships'
+            className="link dim f6 f4-ns dib mr4 ttu">
+            Starships</Link>
+          <Link to='/species'
+            className="link dim f6 f4-ns dib mr4 ttu">
+            Species</Link>
         </div>
       </nav>
     </div>
