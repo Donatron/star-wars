@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Promise from 'redux-promise';
+import ReduxPromise from 'redux-promise';
 import Particles from 'react-particles-js';
 import Home from '../components/Home/Home';
 
@@ -18,7 +18,7 @@ import SpeciesList from '../components/Species/SpeciesList';
 import StarshipList from '../components/Starships/StarshipList';
 import VehicleList from '../components/Vehicles/VehicleList';
 
-const createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 const particlesOptions = {
   particles: {
