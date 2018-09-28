@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPeople } from '../../actions/index';
@@ -24,10 +25,12 @@ class CharacterList extends Component {
           {
             this.props.people.map((person, i) => {
               return (
-                <Character
-                  key={person.name}
-                  id={i+1}
-                  name={person.name}/>
+                  <Link to={`/characters/${i+1}`} key={i}>
+                    <Character
+                      key={person.name}
+                      id={i+1}
+                      name={person.name}/>
+                  </Link>
               )
             })
           }

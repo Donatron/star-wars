@@ -12,6 +12,7 @@ import './App.css';
 import Navigation from '../components/Navigation/Navigation';
 import SearchBox from '../components/Search/SearchBox';
 import CharacterList from '../components/Characters/CharacterList';
+import CharacterDetail from '../components/Characters/CharacterDetail';
 import FilmList from '../components/Films/FilmList';
 import PlanetList from '../components/Planets/PlanetList';
 import SpeciesList from '../components/Species/SpeciesList';
@@ -92,6 +93,7 @@ class App extends Component {
               { searchBoxComponent }
 
               <Switch>
+                <Route path="/characters/:id" component={CharacterDetail} />
                 <Route path="/characters" component={CharacterList} />
                 <Route path="/films" component={FilmList} />
                 <Route path="/planets" component={PlanetList} />
