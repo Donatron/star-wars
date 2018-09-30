@@ -14,10 +14,12 @@ import SearchBox from '../components/Search/SearchBox';
 import CharacterList from '../components/Characters/CharacterList';
 import CharacterDetail from '../components/Characters/CharacterDetail';
 import FilmList from '../components/Films/FilmList';
+import FilmDetail from '../components/Films/FilmDetail';
 import PlanetList from '../components/Planets/PlanetList';
 import SpeciesList from '../components/Species/SpeciesList';
 import StarshipList from '../components/Starships/StarshipList';
 import VehicleList from '../components/Vehicles/VehicleList';
+import Footer from '../components/Footer/Footer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
@@ -95,6 +97,7 @@ class App extends Component {
               <Switch>
                 <Route path="/characters/:id" component={CharacterDetail} />
                 <Route path="/characters" component={CharacterList} />
+                <Route path="/films/:id" component={FilmDetail} />
                 <Route path="/films" component={FilmList} />
                 <Route path="/planets" component={PlanetList} />
                 <Route path="/vehicles" component={VehicleList} />
@@ -102,6 +105,7 @@ class App extends Component {
                 <Route path="/species" component={SpeciesList} />
                 <Route path="/" component={Home} />
               </Switch>
+              <Footer />
             </div>
           </BrowserRouter>
         </Provider>

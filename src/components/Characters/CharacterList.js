@@ -21,7 +21,7 @@ class CharacterList extends Component {
       );
     } else {
       return (
-        <div className="tc white center characters">
+        <div className="tc white flex justify-around characters">
           {
             this.props.people.map((person, i) => {
               return (

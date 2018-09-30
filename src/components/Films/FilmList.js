@@ -1,32 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchFilms } from '../../actions';
+
 import Film from './Film';
 import Loader from '../Loader/loader';
 import './Films.css'
 
-const FilmList = ({ films }) => {
-  if (!films || films.length === 0) {
-    return (
-      <Loader />
-    )
-  } else {
-    return (
-      <div className="tc white center films">
-Films list
-        {
-          // films.map((film, i) => {
-          //   return (
-          //     <Film
-          //       key={film.title}
-          //       id={i+1}
-          //       name={film.title}
-          //     />
-          //   )
-          // })
-        }
+class FilmList extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-      </div>
+  renderFilms() {
+    if (!this.props.films) {
+      return (
+      <Loader />
+      )
+    } else {
+      return (
+        <div className="tc white flex justify-around films">
+          {
+            this.props.films.map((film, i) => {
+              return (
+                  <Link to={`/films/${i+1}`} key={i}>
+                    <Film
+                      key={film.name}
+                      id={i+1}
+                      name={film.name}/>
+                  </Link>
+              )
+            })
+          }
+        </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <div>{this.renderFilms()}</div>
     )
+  }
+
+  componentDidMount() {
+    this.props.fetchFilms();
   }
 }
 
-export default FilmList;
+function mapStateToProps(state) {
+  return { films: state.films.results }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchFilms }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilmList);

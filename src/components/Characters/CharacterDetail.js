@@ -12,6 +12,10 @@ class CharacterDetail extends Component {
     this.props.fetchPerson(id);
   }
 
+  renderPerson() {
+
+  }
+
   render() {
     const { person } = this.props;
     const { id } = this.props.match.params;
@@ -49,7 +53,7 @@ class CharacterDetail extends Component {
               <h3>Appears In Films</h3>
               {
                 person.films.map(film => {
-                  return <p>{film}</p>
+                  return <p key={film}>{film}</p>
                 })
               }
             </div>
@@ -57,7 +61,7 @@ class CharacterDetail extends Component {
               <h3>Vehicles</h3>
               {
                 person.vehicles.map(vehicle => {
-                  return <p>{vehicle}</p>
+                  return <p key={vehicle}>{vehicle}</p>
                 })
               }
             </div>
@@ -65,7 +69,7 @@ class CharacterDetail extends Component {
               <h3>Starships</h3>
               {
                 person.starships.map(starship => {
-                  return <p>{starship}</p>
+                  return <p key={starship}>{starship}</p>
                 })
               }
             </div>
@@ -80,9 +84,5 @@ class CharacterDetail extends Component {
 function mapStateToProps({ people }, ownProps) {
   return { person: people.person };
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchPerson }, dispatch);
-// }
 
 export default connect(mapStateToProps, { fetchPerson })(CharacterDetail);
