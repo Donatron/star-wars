@@ -16,6 +16,7 @@ import CharacterDetail from '../components/Characters/CharacterDetail';
 import FilmList from '../components/Films/FilmList';
 import FilmDetail from '../components/Films/FilmDetail';
 import PlanetList from '../components/Planets/PlanetList';
+import PlanetDetail from '../components/Planets/PlanetDetail';
 import SpeciesList from '../components/Species/SpeciesList';
 import StarshipList from '../components/Starships/StarshipList';
 import VehicleList from '../components/Vehicles/VehicleList';
@@ -99,6 +100,7 @@ class App extends Component {
                 <Route path="/characters" component={CharacterList} />
                 <Route path="/films/:id" component={FilmDetail} />
                 <Route path="/films" component={FilmList} />
+                <Route path="/planets/:id" component={PlanetDetail} />
                 <Route path="/planets" component={PlanetList} />
                 <Route path="/vehicles" component={VehicleList} />
                 <Route path="/starships" component={StarshipList} />

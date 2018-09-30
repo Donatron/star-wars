@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchFilm } from '../../actions';
 
 import Loader from '../Loader/loader';
 import Film from './Film';
+import Character from '../Characters/Character';
+import Planet from '../Planets/Planet';
+import Species from '../Species/Species';
+import Starship from '../Starships/Starship';
+import Vehicle from '../Vehicles/Vehicle';
 
 class FilmDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchFilm(id);
+  }
+
+  getIndex(array) {
+    let splitArray = array.split("/");
+    let index = splitArray[splitArray.length-2];
+
+    return index;
   }
 
   renderFilm() {
@@ -46,7 +59,16 @@ class FilmDetail extends Component {
                 <h3>Characters</h3>
                 {
                   film.characters.map(character => {
-                    return <p key={character}>{character}</p>
+                    let id = this.getIndex(character);
+
+                    return (
+                      <Link to={`/characters/${id}`} key={id}>
+                        <Character
+                          key={id}
+                          name={character.name}
+                          id={id}/>
+                      </Link>
+                    )
                   })
                 }
               </div>
@@ -54,7 +76,14 @@ class FilmDetail extends Component {
                 <h3>Planets</h3>
                 {
                   film.planets.map(planet => {
-                    return <p key={planet}>{planet}</p>
+                    let id = this.getIndex(planet);
+
+                    return (
+                      <Planet
+                        name={planet.name}
+                        id={id}
+                        key={id}/>
+                    )
                   })
                 }
               </div>
@@ -62,7 +91,14 @@ class FilmDetail extends Component {
                 <h3>Species</h3>
                 {
                   film.species.map(specie => {
-                    return <p key={specie}>{specie}</p>
+                    let id = this.getIndex(specie);
+
+                    return (
+                      <Species
+                        name={""}
+                        id={id}
+                        key={id}/>
+                    )
                   })
                 }
               </div>
@@ -70,7 +106,14 @@ class FilmDetail extends Component {
                 <h3>Starships</h3>
                 {
                   film.starships.map(starship => {
-                    return <p key={starship}>{starship}</p>
+                    let id = this.getIndex(starship);
+
+                    return (
+                      <Starship
+                        name={""}
+                        id={id}
+                        key={id}/>
+                    )
                   })
                 }
               </div>
@@ -78,7 +121,14 @@ class FilmDetail extends Component {
                 <h3>Vehicles</h3>
                 {
                   film.vehicles.map(vehicle => {
-                    return <p key={vehicle}>{vehicle}</p>
+                    let id = this.getIndex(vehicle);
+
+                    return (
+                      <Vehicle
+                        name={""}
+                        id={id}
+                        key={id}/>
+                    )
                   })
                 }
               </div>

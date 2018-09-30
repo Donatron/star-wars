@@ -12,10 +12,6 @@ class CharacterDetail extends Component {
     this.props.fetchPerson(id);
   }
 
-  renderPerson() {
-
-  }
-
   render() {
     const { person } = this.props;
     const { id } = this.props.match.params;

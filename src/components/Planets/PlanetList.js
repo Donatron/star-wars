@@ -1,33 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchPlanets } from '../../actions/index';
+
 import Planet from './Planet';
 import './Planets.css'
 import Loader from '../Loader/loader';
 
-const PlanetList = ({ planets }) => {
-  if (!planets || planets.length === 0) {
-    return (
-      <Loader />
-    );
-  } else {
+class PlanetList extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    this.props.fetchPlanets();
+  }
+
+  renderPlanets() {
+    if (!this.props.planets) {
       return (
-        <div className="tc white center planets">
-          Planets list
-          {
-            // planets.map((planet, i) => {
-            //   if (i !== 26) {
-            //     return (
-            //       <Planet
-            //         key={planet.name}
-            //         id={i+1}
-            //         name={planet.name}
-            //       />
-            //     );
-            //   }
-            // })
-          }
+        <div>
+          <Loader />
         </div>
-      );
+      )
+    } else {
+        return (
+          <div className="tc white flex justify-around planets">
+            {
+              this.props.planets.map((planet, i) => {
+                return (
+                    <Link to={`/planets/${i+1}`} key={i}>
+                      <Planet
+                        key={planet.name}
+                        id={i+1}
+                        name={planet.name}/>
+                    </Link>
+                )
+              })
+            }
+          </div>
+        )
+    }
+  }
+
+  render() {
+    return (
+      <div>{this.renderPlanets()}</div>
+    )
   }
 }
 
-export default PlanetList;
+function mapStateToProps(state) {
+  return { planets: state.planets.results }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({fetchPlanets}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlanetList);
