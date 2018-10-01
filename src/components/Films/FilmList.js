@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchFilms } from '../../actions';
+import { getIndex } from '../../helpers';
 
 import Film from './Film';
 import Loader from '../Loader/loader';
@@ -23,11 +24,13 @@ class FilmList extends Component {
         <div className="tc white flex justify-around films">
           {
             this.props.films.map((film, i) => {
+              let id = getIndex(film.url);
+
               return (
-                  <Link to={`/films/${i+1}`} key={i}>
+                  <Link to={`/films/${id}`} key={id}>
                     <Film
                       key={film.name}
-                      id={i+1}
+                      id={id}
                       name={film.name}/>
                   </Link>
               )

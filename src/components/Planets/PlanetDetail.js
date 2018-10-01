@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPlanet } from '../../actions';
+import { getIndex } from '../../helpers';
 
 import Loader from '../Loader/loader';
 import Planet from './Planet';
@@ -13,13 +14,6 @@ class PlanetDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchPlanet(id);
-  }
-
-  getIndex(array) {
-    let splitArray = array.split("/");
-    let index = splitArray[splitArray.length-2];
-
-    return index;
   }
 
   renderPlanet() {

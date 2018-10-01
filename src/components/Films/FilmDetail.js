@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchFilm } from '../../actions';
+import { getIndex } from '../../helpers';
 
 import Loader from '../Loader/loader';
 import Film from './Film';
@@ -16,13 +17,6 @@ class FilmDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchFilm(id);
-  }
-
-  getIndex(array) {
-    let splitArray = array.split("/");
-    let index = splitArray[splitArray.length-2];
-
-    return index;
   }
 
   renderFilm() {
@@ -59,7 +53,7 @@ class FilmDetail extends Component {
                 <h3>Characters</h3>
                 {
                   film.characters.map(character => {
-                    let id = this.getIndex(character);
+                    let id = getIndex(character);
 
                     return (
                       <Link to={`/characters/${id}`} key={id}>
@@ -76,7 +70,7 @@ class FilmDetail extends Component {
                 <h3>Planets</h3>
                 {
                   film.planets.map(planet => {
-                    let id = this.getIndex(planet);
+                    let id = getIndex(planet);
 
                     return (
                       <Planet
@@ -91,7 +85,7 @@ class FilmDetail extends Component {
                 <h3>Species</h3>
                 {
                   film.species.map(specie => {
-                    let id = this.getIndex(specie);
+                    let id = getIndex(specie);
 
                     return (
                       <Species
@@ -106,7 +100,7 @@ class FilmDetail extends Component {
                 <h3>Starships</h3>
                 {
                   film.starships.map(starship => {
-                    let id = this.getIndex(starship);
+                    let id = getIndex(starship);
 
                     return (
                       <Starship
@@ -121,7 +115,7 @@ class FilmDetail extends Component {
                 <h3>Vehicles</h3>
                 {
                   film.vehicles.map(vehicle => {
-                    let id = this.getIndex(vehicle);
+                    let id = getIndex(vehicle);
 
                     return (
                       <Vehicle
