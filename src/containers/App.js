@@ -20,6 +20,7 @@ import PlanetDetail from '../components/Planets/PlanetDetail';
 import SpeciesList from '../components/Species/SpeciesList';
 import StarshipList from '../components/Starships/StarshipList';
 import VehicleList from '../components/Vehicles/VehicleList';
+import VehicleDetail from '../components/Vehicles/VehicleDetail';
 import Footer from '../components/Footer/Footer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -102,6 +103,7 @@ class App extends Component {
                 <Route path="/films" component={FilmList} />
                 <Route path="/planets/:id" component={PlanetDetail} />
                 <Route path="/planets" component={PlanetList} />
+                <Route path="/vehicles/:id" component={VehicleDetail} />
                 <Route path="/vehicles" component={VehicleList} />
                 <Route path="/starships" component={StarshipList} />
                 <Route path="/species" component={SpeciesList} />

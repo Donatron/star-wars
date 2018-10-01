@@ -6,6 +6,8 @@ export const FETCH_FILMS = 'FETCH_FILMS';
 export const FETCH_FILM = 'FETCH_FILM';
 export const FETCH_PLANETS = 'FETCH_PLANETS';
 export const FETCH_PLANET = 'FETCH_PLANET';
+export const FETCH_VEHICLES = 'FETCH_VEHICLES';
+export const FETCH_VEHICLE = 'FETCH_VEHICLE';
 
 const ROOT_URL = 'https://swapi.co/api';
 
@@ -59,6 +61,24 @@ export function fetchPlanet(id) {
 
   return {
     type: FETCH_PLANET,
+    payload: request
+  }
+}
+
+export function fetchVehicles() {
+  let request = axios.get(`${ROOT_URL}/vehicles`);
+
+  return {
+    type: FETCH_VEHICLES,
+    payload: request
+  }
+}
+
+export function fetchVehicle(id) {
+  let request = axios.get(`${ROOT_URL}/vehicles/${id}`);
+
+  return {
+    type: FETCH_VEHICLE,
     payload: request
   }
 }

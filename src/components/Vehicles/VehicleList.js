@@ -1,33 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchVehicles } from '../../actions';
+import { getIndex } from '../../helpers';
+
 import Vehicle from './Vehicle';
 import Loader from '../Loader/loader';
 import './Vehicles.css';
 
-const VehicleList = ({ vehicles }) => {
-  if (!vehicles || vehicles.length === 0) {
-    return (
-      <Loader />
-    );
-  } else {
+class VehicleList extends Component {
+  componentDidMount() {
+    this.props.fetchVehicles()
+  }
+
+  renderVehicles() {
+    if (!this.props.vehicles) {
       return (
-        <div className="tc white center vehicles">
-          vehicles list
+      <Loader />
+      )
+    } else {
+      return (
+        <div className="tc white flex justify-around vehicles">
           {
-            // vehicles.map((vehicle, i) => {
-            //   if (i !== 26) {
-            //     return (
-            //       <Vehicle
-            //         key={vehicle.name}
-            //         id={i+1}
-            //         name={vehicle.name}
-            //       />
-            //     );
-            //   }
-            // })
+            this.props.vehicles.map((vehicle, i) => {
+              let id = getIndex(vehicle.url);
+
+              return (
+                  <Link to={`/vehicles/${id}`} key={id}>
+                    <Vehicle
+                      key={vehicle.name}
+                      id={id}
+                      name={vehicle.name}/>
+                  </Link>
+              )
+            })
           }
         </div>
-      );
+      )
+    }
   }
+
+  render() {
+    return (
+      <div>{this.renderVehicles()}</div>
+    )
+  }
+
 }
 
-export default VehicleList;
+function mapStateToProps(state) {
+  return { vehicles: state.vehicles.results }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({fetchVehicles}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VehicleList);
