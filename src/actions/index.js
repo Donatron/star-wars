@@ -8,6 +8,8 @@ export const FETCH_PLANETS = 'FETCH_PLANETS';
 export const FETCH_PLANET = 'FETCH_PLANET';
 export const FETCH_VEHICLES = 'FETCH_VEHICLES';
 export const FETCH_VEHICLE = 'FETCH_VEHICLE';
+export const FETCH_STARSHIPS = 'FETCH_STARSHIPS';
+export const FETCH_STARSHIP = 'FETCH_STARSHIP';
 
 const ROOT_URL = 'https://swapi.co/api';
 
@@ -79,6 +81,24 @@ export function fetchVehicle(id) {
 
   return {
     type: FETCH_VEHICLE,
+    payload: request
+  }
+}
+
+export function fetchStarships() {
+  let request = axios.get(`${ROOT_URL}/starships`);
+
+  return {
+    type: FETCH_STARSHIPS,
+    payload: request
+  }
+}
+
+export function fetchStarship(id) {
+  let request = axios.get(`${ROOT_URL}/starships/${id}`);
+
+  return {
+    type: FETCH_STARSHIP,
     payload: request
   }
 }

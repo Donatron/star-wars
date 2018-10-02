@@ -19,6 +19,7 @@ import PlanetList from '../components/Planets/PlanetList';
 import PlanetDetail from '../components/Planets/PlanetDetail';
 import SpeciesList from '../components/Species/SpeciesList';
 import StarshipList from '../components/Starships/StarshipList';
+import StarshipDetail from '../components/Starships/StarshipDetail';
 import VehicleList from '../components/Vehicles/VehicleList';
 import VehicleDetail from '../components/Vehicles/VehicleDetail';
 import Footer from '../components/Footer/Footer';
@@ -105,6 +106,7 @@ class App extends Component {
                 <Route path="/planets" component={PlanetList} />
                 <Route path="/vehicles/:id" component={VehicleDetail} />
                 <Route path="/vehicles" component={VehicleList} />
+                <Route path="/starships/:id" component={StarshipDetail} />
                 <Route path="/starships" component={StarshipList} />
                 <Route path="/species" component={SpeciesList} />
                 <Route path="/" component={Home} />

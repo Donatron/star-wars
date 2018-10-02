@@ -5,7 +5,7 @@ import Logo from '../Logo/Logo';
 
 const Navigation = ({ onRouteChange }) => {
   return (
-    <div>
+    <div className="header">
       <Link to="/">
         <Logo />
       </Link>

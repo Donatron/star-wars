@@ -1,33 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { fetchStarships } from '../../actions';
+import { getIndex } from '../../helpers';
+
 import Starship from './Starship';
 import Loader from '../Loader/loader';
 import './Starships.css';
 
-const StarshipList = ({ starships }) => {
-  if (!starships || starships.length === 0) {
-    return (
-      <Loader />
-    )
-  } else {
+class StarshipList extends Component {
+  componentDidMount() {
+    this.props.fetchStarships();
+  }
 
-    return (
-      <div className="tc white center starships">
-        startships list
-        {
-          // starships.map((starship, i) => {
-          //   return (
-          //     <Starship
-          //       key={starship.name}
-          //       id={i+1}
-          //       name={starship.name}
-          //     />
-          //   )
-          // })
-        }
+  render() {
+    if(!this.props.starships) {
 
-      </div>
-    )
+      return (
+        <Loader />
+      )
+    } else {
+        return (
+          <div className="tc white flex justify-around starships">
+            {
+              this.props.starships.map((starship, i) => {
+                const id = getIndex(starship.url);
+                console.log(`Name: ${starship.name}. ID: ${id}`);
+
+                return (
+                  <Link to={`/starships/${id}`} key={id}>
+                    <Starship
+                      key={starship.name}
+                      id={id}
+                      name={starship.name}
+                    />
+                  </Link>
+                )
+              })
+            }
+
+          </div>
+        )
+    }
   }
 }
 
-export default StarshipList;
+function mapStateToProps(state) {
+  return { starships: state.starships.results }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchStarships }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StarshipList);

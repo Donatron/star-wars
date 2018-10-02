@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPerson } from '../../actions';
+import { getIndex } from '../../helpers';
 
 import Character from './Character';
 import Loader from '../Loader/loader';
+import Film from '../Films/Film';
+import Vehicle from '../Vehicles/Vehicle';
+import Starship from '../Starships/Starship';
 
 class CharacterDetail extends Component {
   componentDidMount() {
@@ -49,24 +54,55 @@ class CharacterDetail extends Component {
               <h3>Appears In Films</h3>
               {
                 person.films.map(film => {
-                  return <p key={film}>{film}</p>
+                  const index = getIndex(film);
+
+                  return (
+                    <Link to={`/films/${index}`} key={index}>
+                      <Film
+                        name=""
+                        id={index}
+                        key={index}/>
+                    </Link>
+                  )
                 })
               }
             </div>
             <div>
               <h3>Vehicles</h3>
               {
-                person.vehicles.map(vehicle => {
-                  return <p key={vehicle}>{vehicle}</p>
-                })
+                person.vehicles.length === 0 ? <p>Unknown</p> :
+
+                  person.vehicles.map(vehicle => {
+                    const index = getIndex(vehicle);
+                    console.log(`Vehicle Index: ${index}`);
+                    return (
+                      <Link to={`/vehicles/${index}`} key={index}>
+                        <Vehicle
+                          name=""
+                          id={index}
+                          key={index}/>
+                      </Link>
+                    )
+                  })
               }
             </div>
             <div>
               <h3>Starships</h3>
               {
-                person.starships.map(starship => {
-                  return <p key={starship}>{starship}</p>
-                })
+                person.starships.length === 0 ? <p>Unknown</p> :
+
+                  person.starships.map(starship => {
+                    const index = getIndex(starship);
+
+                    return (
+                      <Link to={`/starships/${index}`} key={index}>
+                        <Starship
+                          name=""
+                          id={index}
+                          key={index}/>
+                      </Link>
+                    )
+                  })
               }
             </div>
           </div>
