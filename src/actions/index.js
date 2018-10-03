@@ -10,6 +10,8 @@ export const FETCH_VEHICLES = 'FETCH_VEHICLES';
 export const FETCH_VEHICLE = 'FETCH_VEHICLE';
 export const FETCH_STARSHIPS = 'FETCH_STARSHIPS';
 export const FETCH_STARSHIP = 'FETCH_STARSHIP';
+export const FETCH_SPECIES = 'FETCH_SPECIES';
+export const FETCH_SPECIE = 'FETCH_SPECIE';
 
 const ROOT_URL = 'https://swapi.co/api';
 
@@ -99,6 +101,24 @@ export function fetchStarship(id) {
 
   return {
     type: FETCH_STARSHIP,
+    payload: request
+  }
+}
+
+export function fetchSpecies() {
+  let request = axios.get(`${ROOT_URL}/species`);
+
+  return {
+    type: FETCH_SPECIES,
+    payload: request
+  }
+}
+
+export function fetchSpecie(id) {
+  let request = axios.get(`${ROOT_URL}/species/${id}`);
+
+  return {
+    type: FETCH_SPECIE,
     payload: request
   }
 }
