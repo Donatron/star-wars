@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPlanets } from '../../actions/index';
+import { getIndex } from '../../helpers';
 
 import Planet from './Planet';
 import './Planets.css'
@@ -29,11 +30,12 @@ class PlanetList extends Component {
           <div className="tc white flex justify-around planets">
             {
               this.props.planets.map((planet, i) => {
+                let id = getIndex(planet.url)
                 return (
-                    <Link to={`/planets/${i+1}`} key={i}>
+                    <Link to={`/planets/${id}`} key={i}>
                       <Planet
                         key={planet.name}
-                        id={i+1}
+                        id={id}
                         name={planet.name}/>
                     </Link>
                 )
