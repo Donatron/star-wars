@@ -54,15 +54,15 @@ class StarshipDetail extends Component {
             <h3>Pilots</h3>
               {
                 starship.pilots.length !== 0 ?
-                starship.pilots.map((pilot, id) => {
-                  const index = getIndex(pilot);
+                starship.pilots.map((pilot, i) => {
+                  const id = getIndex(pilot);
 
                   return (
-                    <Link to={`/characters/${index}`} key={index}>
+                    <Link to={`/characters/${id}`} key={id}>
                       <Character
                         name={pilot.name}
-                        id={index}
-                        key={index}/>
+                        id={id}
+                        key={id}/>
                     </Link>
                   )
                 }) : <p>Unknown</p>
@@ -71,16 +71,15 @@ class StarshipDetail extends Component {
           <div>
             <h3>Appears In Films</h3>
               {
-                starship.films.map((film, id) => {
-                  const index = getIndex(film);
-                  console.log(`Index: ${index}`);
+                starship.films.map((film, i) => {
+                  const id = getIndex(film);
 
                   return (
-                    <Link to={`/films/${index}`} key={index}>
+                    <Link to={`/films/${id}`} key={id}>
                       <Film
                         name={film.name}
-                        id={index}
-                        key={index}/>
+                        id={id}
+                        key={id}/>
                     </Link>
                   )
                 })

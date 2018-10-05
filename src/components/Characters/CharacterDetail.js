@@ -54,14 +54,14 @@ class CharacterDetail extends Component {
               <h3>Appears In Films</h3>
               {
                 person.films.map(film => {
-                  const index = getIndex(film);
+                  const id = getIndex(film);
 
                   return (
-                    <Link to={`/films/${index}`} key={index}>
+                    <Link to={`/films/${id}`} key={id}>
                       <Film
                         name=""
-                        id={index}
-                        key={index}/>
+                        id={id}
+                        key={id}/>
                     </Link>
                   )
                 })
@@ -73,14 +73,14 @@ class CharacterDetail extends Component {
                 person.vehicles.length === 0 ? <p>Unknown</p> :
 
                   person.vehicles.map(vehicle => {
-                    const index = getIndex(vehicle);
-                    console.log(`Vehicle Index: ${index}`);
+                    const id = getIndex(vehicle);
+
                     return (
-                      <Link to={`/vehicles/${index}`} key={index}>
+                      <Link to={`/vehicles/${id}`} key={id}>
                         <Vehicle
                           name=""
-                          id={index}
-                          key={index}/>
+                          id={id}
+                          key={id}/>
                       </Link>
                     )
                   })
@@ -92,14 +92,14 @@ class CharacterDetail extends Component {
                 person.starships.length === 0 ? <p>Unknown</p> :
 
                   person.starships.map(starship => {
-                    const index = getIndex(starship);
+                    const id = getIndex(starship);
 
                     return (
-                      <Link to={`/starships/${index}`} key={index}>
+                      <Link to={`/starships/${id}`} key={id}>
                         <Starship
                           name=""
-                          id={index}
-                          key={index}/>
+                          id={id}
+                          key={id}/>
                       </Link>
                     )
                   })

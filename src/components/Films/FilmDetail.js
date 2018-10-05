@@ -73,10 +73,12 @@ class FilmDetail extends Component {
                     let id = getIndex(planet);
 
                     return (
-                      <Planet
-                        name={planet.name}
-                        id={id}
-                        key={id}/>
+                      <Link to={`/planets/${id}`} key={id} >
+                        <Planet
+                          name={planet.name}
+                          id={id}
+                          key={id}/>
+                      </Link>
                     )
                   })
                 }
@@ -88,10 +90,12 @@ class FilmDetail extends Component {
                     let id = getIndex(specie);
 
                     return (
-                      <Species
-                        name={""}
-                        id={id}
-                        key={id}/>
+                      <Link to={`/species/${id}`} key={id}>
+                        <Species
+                          name={""}
+                          id={id}
+                          key={id}/>
+                      </Link>
                     )
                   })
                 }
@@ -103,10 +107,12 @@ class FilmDetail extends Component {
                     let id = getIndex(starship);
 
                     return (
-                      <Starship
-                        name={""}
-                        id={id}
-                        key={id}/>
+                      <Link to={`/starships/${id}`} key={id}>
+                        <Starship
+                          name={""}
+                          id={id}
+                          key={id}/>
+                      </Link>
                     )
                   })
                 }
@@ -118,10 +124,12 @@ class FilmDetail extends Component {
                     let id = getIndex(vehicle);
 
                     return (
-                      <Vehicle
-                        name={""}
-                        id={id}
-                        key={id}/>
+                      <Link to={`/vehicles/${id}`} key={id}>
+                        <Vehicle
+                          name={""}
+                          id={id}
+                          key={id}/>
+                      </Link>
                     )
                   })
                 }

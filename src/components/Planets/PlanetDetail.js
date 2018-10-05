@@ -48,12 +48,16 @@ class PlanetDetail extends Component {
           <div>
             <h3>Inhabitants</h3>
             {
-              planet.residents.map((resident, id) => {
+              planet.residents.map((resident, i) => {
+                let id = getIndex(resident);
+
                 return (
-                  <Character
-                    name={resident.name}
-                    id={id+1}
-                    key={id}/>
+                  <Link to={`/characters/${id}`} key={id}>
+                    <Character
+                      name={resident.name}
+                      id={id}
+                      key={id}/>
+                  </Link>
                 )
               })
             }
@@ -62,12 +66,16 @@ class PlanetDetail extends Component {
           <div>
             <h3>Appears In Films</h3>
               {
-                planet.films.map((film, id) => {
+                planet.films.map((film, i) => {
+                  let id = getIndex(film);
+
                   return (
-                    <Film
-                      name={film.name}
-                      id={id+1}
-                      key={id}/>
+                    <Link to={`/films/${id}`} key={id}>
+                      <Film
+                        name={film.name}
+                        id={id}
+                        key={id}/>
+                    </Link>
                   )
                 })
               }

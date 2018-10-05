@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchVehicle } from '../../actions';
+import { getIndex } from '../../helpers';
 
 import Loader from '../Loader/loader'
 import Vehicle from './Vehicle';
@@ -51,12 +52,16 @@ class VehicleDetail extends Component {
               <h3>Pilots</h3>
                 {
                   vehicle.pilots.length !== 0 ?
-                  vehicle.pilots.map((pilot, id) => {
+                  vehicle.pilots.map((pilot, i) => {
+                    let id = getIndex(pilot);
+
                     return (
-                      <Character
-                        name={pilot.name}
-                        id={id+1}
-                        key={id}/>
+                      <Link to={`/characters/${id}`} key={id}>
+                        <Character
+                          name={pilot.name}
+                          id={id}
+                          key={id}/>
+                      </Link>
                     )
                   }) : <p>Unknown</p>
                 }
@@ -64,12 +69,16 @@ class VehicleDetail extends Component {
             <div>
               <h3>Appears In Films</h3>
                 {
-                  vehicle.films.map((film, id) => {
+                  vehicle.films.map((film, i) => {
+                    let id = getIndex(film);
+
                     return (
-                      <Film
-                        name={film.name}
-                        id={id+1}
-                        key={id}/>
+                      <Link to={`/films/${id}`} key={id}>
+                        <Film
+                          name={film.name}
+                          id={id}
+                          key={id}/>
+                      </Link>
                     )
                   })
                 }

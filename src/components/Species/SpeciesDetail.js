@@ -50,12 +50,16 @@ class SpeciesDetail extends Component {
           <div>
             <h3>People</h3>
             {
-              specie.people.map((person, id) => {
+              specie.people.map((person, i) => {
+                let id = getIndex(person);
+
                 return (
-                  <Character
-                    name=""
-                    id={id+1}
-                    key={id}/>
+                  <Link to={`/characters/${id}`} key={id}>
+                    <Character
+                      name=""
+                      id={id}
+                      key={id}/>
+                  </Link>
                 )
               })
             }
@@ -63,12 +67,16 @@ class SpeciesDetail extends Component {
           <div>
             <h3>Appears In Films</h3>
               {
-                specie.films.map((film, id) => {
+                specie.films.map((film, i) => {
+                  let id = getIndex(film);
+
                   return (
-                    <Film
-                      name=""
-                      id={id+1}
-                      key={id}/>
+                    <Link to={`/films/${id}`} key={id}>
+                      <Film
+                        name=""
+                        id={id}
+                        key={id}/>
+                    </Link>
                   )
                 })
               }
