@@ -10,6 +10,7 @@ import Loader from '../Loader/loader';
 import Film from '../Films/Film';
 import Vehicle from '../Vehicles/Vehicle';
 import Starship from '../Starships/Starship';
+import Planet from '../Planets/Planet';
 
 class CharacterDetail extends Component {
   componentDidMount() {
@@ -28,17 +29,17 @@ class CharacterDetail extends Component {
     } else {
 
       return (
-        <div>
-          <div className="w100 text-center">
+        <div className="center">
+          <div>
           <h2>{person.name}</h2>
           </div>
-          <div className="flex flex-wrap pa3 ml2 mr2">
+          <div className="w-100 pa3 flex justify-start character-detail">
             <Character
               key={person.name}
               id={id}
-              name={""}
-              />
-            <div>
+              name={""} />
+
+            <div className="pa3 ml5">
               <h3>Character Details</h3>
               <p>Height: {person.height}cm</p>
               <p>Mass: {person.mass}kg</p>
@@ -47,26 +48,31 @@ class CharacterDetail extends Component {
               <p>Eye Colour: {person.eye_color}</p>
               <p>Born: {person.birth_year}</p>
               <p>Gender: {person.gender}</p>
-              <p>Home Planet: {person.homeworld}</p>
-              <p>Species: {person.species}</p>
             </div>
-            <div>
-              <h3>Appears In Films</h3>
-              {
-                person.films.map(film => {
-                  const id = getIndex(film);
 
-                  return (
-                    <Link to={`/films/${id}`} key={id}>
-                      <Film
-                        name=""
-                        id={id}
-                        key={id}/>
-                    </Link>
-                  )
-                })
-              }
+            <div className="center pa3 w-50 details">
+              <h3>Appears In Films</h3>
+              <div className="flex flex-wrap justify-around">
+                {
+                  person.films.map(film => {
+                    const id = getIndex(film);
+
+                    return (
+                      <Link to={`/films/${id}`} key={id}>
+                        <Film
+                          name=""
+                          id={id}
+                          key={id}/>
+                      </Link>
+                    )
+                  })
+                }
+              </div>
             </div>
+
+          </div>
+          <div className="flex flex-wrap justify-around pa3 ml2 mr2 w100 details">
+
             <div>
               <h3>Vehicles</h3>
               {
@@ -105,6 +111,8 @@ class CharacterDetail extends Component {
                   })
               }
             </div>
+
+
           </div>
         </div>
       );

@@ -3,7 +3,7 @@ import React from 'react';
 const Character = ({ name, id }) => {
   return (
 
-    <article className="mv4 mw5 center">
+    <article className="mv4 mw5">
       <img src={require(`../../assets/img/characters/${id}.jpg`)} className="db br2 br--top grow" alt="star wars character." />
       <p>{name}</p><br></br>
     </article>

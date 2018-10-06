@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+.details img {
+  width: 150px !important;
+  height: auto;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
