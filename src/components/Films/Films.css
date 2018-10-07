@@ -8,3 +8,11 @@
 .films article {
   padding: 0 20px;
 }
+
+.film-detail-header {
+  position: relative;
+}
+
+.film-detail-crawl {
+  animation: scroll 100s linear !important;
+}

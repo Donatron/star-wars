@@ -1,6 +1,7 @@
 .App {
   min-height: 100vh;
   position: relative;
+  color: rgb(229,177, 58);
 }
 
 .particles {

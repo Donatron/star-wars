@@ -19,6 +19,33 @@ class FilmDetail extends Component {
     this.props.fetchFilm(id);
   }
 
+  convertToRoman(num) {
+    var roman = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1
+    };
+    var str = '';
+
+    for (var i of Object.keys(roman)) {
+      var q = Math.floor(num / roman[i]);
+      num -= q * roman[i];
+      str += i.repeat(q);
+    }
+
+    return str;
+  }
+
   renderFilm() {
     const { film } = this.props;
     const { id } = this.props.match.params;
@@ -28,111 +55,134 @@ class FilmDetail extends Component {
       <Loader />
       )
     } else {
+      const episodeID = film.episode_id;
+      const romanId = this.convertToRoman(episodeID);
+      const crawlArray = film.opening_crawl.split('\r\n\r');
+
       return (
         <div>
           <div className="w-100 text-center">
-            <h2>{film.title}</h2>
+            <h2>Episode {romanId}: {film.title}</h2>
             <p>Directed by {film.director}</p>
           </div>
-          <div className="tc white flex justify-around">
+          <div className="pl5 pr5 tc white flex justify-between film-detail-header">
             <Film
               name={""}
               id={id}/>
-            <div className="w-20 pa3 bgred">
-              <div id="board" className="w-20">
-                <div id="content">
-                  {film.opening_crawl}
+            <div className="board">
+              <div className="content  film-detail-crawl">
+                <div className="w-80 pa5 ml5 subtitle">
+                  {
+                    crawlArray.map(el => {
+                      return (
+                        <div>
+                          <p>{el}</p><br />
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               </div>
             </div>
           </div>
-          <div>
-            <h2>Episode Information</h2>
-            <div className="flex justify-around">
-              <div className="pa2">
+          <div className="details">
+            <h2 className="mt5">Episode Information</h2>
+            <div className="flex flex-wrap">
+              <div className="pa2 w-100">
                 <h3>Characters</h3>
-                {
-                  film.characters.map(character => {
-                    let id = getIndex(character);
+                <div className="flex flex-wrap justify-around mt0 pr5 pl5">
+                  {
+                    film.characters.map(character => {
+                      let id = getIndex(character);
 
-                    return (
-                      <Link to={`/characters/${id}`} key={id}>
-                        <Character
-                          key={id}
-                          name={character.name}
-                          id={id}/>
-                      </Link>
-                    )
-                  })
-                }
+                      return (
+                        <Link to={`/characters/${id}`} key={id}>
+                          <Character
+                            key={id}
+                            name={character.name}
+                            id={id}/>
+                        </Link>
+                      )
+                    })
+                  }
+                </div>
               </div>
-              <div>
+              <div className="pa2 w-100">
                 <h3>Planets</h3>
-                {
-                  film.planets.map(planet => {
-                    let id = getIndex(planet);
+                <div className="flex flex-wrap justify-around mt0 pr5 pl5">
+                  {
+                    film.planets.map(planet => {
+                      let id = getIndex(planet);
 
-                    return (
-                      <Link to={`/planets/${id}`} key={id} >
-                        <Planet
-                          name={planet.name}
-                          id={id}
-                          key={id}/>
-                      </Link>
-                    )
-                  })
-                }
-              </div>
-              <div>
-                <h3>Species</h3>
-                {
-                  film.species.map(specie => {
-                    let id = getIndex(specie);
+                      return (
+                        <Link to={`/planets/${id}`} key={id} >
+                          <Planet
+                            name={planet.name}
+                            id={id}
+                            key={id}/>
+                        </Link>
+                      )
+                    })
+                  }
+                </div>
+                <div className="pa2 w-100">
+                  <h3>Species</h3>
+                  <div className="flex flex-wrap justify-around mt0 pr5 pl5">
 
-                    return (
-                      <Link to={`/species/${id}`} key={id}>
-                        <Species
-                          name={""}
-                          id={id}
-                          key={id}/>
-                      </Link>
-                    )
-                  })
-                }
+                    {
+                      film.species.map(specie => {
+                        let id = getIndex(specie);
+
+                        return (
+                          <Link to={`/species/${id}`} key={id}>
+                            <Species
+                              name={""}
+                              id={id}
+                              key={id}/>
+                          </Link>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
               </div>
-              <div>
+              <div className="pa2 w-100">
                 <h3>Starships</h3>
-                {
-                  film.starships.map(starship => {
-                    let id = getIndex(starship);
+                <div className="flex flex-wrap justify-around mt0 pr5 pl5">
+                  {
+                    film.starships.map(starship => {
+                      let id = getIndex(starship);
 
-                    return (
-                      <Link to={`/starships/${id}`} key={id}>
-                        <Starship
-                          name={""}
-                          id={id}
-                          key={id}/>
-                      </Link>
-                    )
-                  })
-                }
+                      return (
+                        <Link to={`/starships/${id}`} key={id}>
+                          <Starship
+                            name={""}
+                            id={id}
+                            key={id}/>
+                        </Link>
+                      )
+                    })
+                  }
+                </div>
               </div>
-              <div>
+              <div className="pa2 w-100">
                 <h3>Vehicles</h3>
-                {
-                  film.vehicles.map(vehicle => {
-                    let id = getIndex(vehicle);
+                <div className="flex flex-wrap justify-around mt0 pr5 pl5">
+                  {
+                    film.vehicles.map(vehicle => {
+                      let id = getIndex(vehicle);
 
-                    return (
-                      <Link to={`/vehicles/${id}`} key={id}>
-                        <Vehicle
-                          name={""}
-                          id={id}
-                          key={id}/>
-                      </Link>
-                    )
-                  })
-                }
+                      return (
+                        <Link to={`/vehicles/${id}`} key={id}>
+                          <Vehicle
+                            name={""}
+                            id={id}
+                            key={id}/>
+                        </Link>
+                      )
+                    })
+                  }
+                </div>
               </div>
             </div>
           </div>

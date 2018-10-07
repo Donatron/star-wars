@@ -6,10 +6,10 @@ const Home = () => {
     <div className="tc home">
 
       <section className="intro pa3 pa5-ns">A long time ago, in a galaxy far, far away....</section>
-      <div id="board">
-        <div id="content">
+      <div className="board">
+        <div className="content">
           <p id="title">Episode I</p>
-          <p id="subtitle">THE FANDOM MENACE</p>
+          <p className="subtitle">THE FANDOM MENACE</p>
           <br />
           <p>Confusion has gripped the film-going public as the ever-growing Star Wars universe continues to release new, and spin-off movies.</p> <br />
           <p>With each new addition to the franchise come new characters, planets, species and starships.</p> <br />

@@ -11,6 +11,7 @@ import Film from '../Films/Film';
 import Vehicle from '../Vehicles/Vehicle';
 import Starship from '../Starships/Starship';
 import Planet from '../Planets/Planet';
+import Species from '../Species/Species';
 
 class CharacterDetail extends Component {
   componentDidMount() {
@@ -27,19 +28,21 @@ class CharacterDetail extends Component {
         <Loader />
       )
     } else {
+      const homeWorldId = getIndex(person.homeworld);
+      const speciesId = getIndex(person.species[0]);
 
       return (
         <div className="center">
           <div>
           <h2>{person.name}</h2>
           </div>
-          <div className="w-100 pa3 flex justify-start character-detail">
+          <div className="w-100 pa3 ml5 flex justify-start character-detail">
             <Character
               key={person.name}
               id={id}
               name={""} />
 
-            <div className="pa3 ml5">
+            <div className="pa3 ml5 details">
               <h3>Character Details</h3>
               <p>Height: {person.height}cm</p>
               <p>Mass: {person.mass}kg</p>
@@ -48,6 +51,24 @@ class CharacterDetail extends Component {
               <p>Eye Colour: {person.eye_color}</p>
               <p>Born: {person.birth_year}</p>
               <p>Gender: {person.gender}</p>
+              <p>Home World:
+                <Link to={`/planets/${homeWorldId}`} >
+                  <Planet
+                    name=""
+                    id={homeWorldId}
+                    key={homeWorldId}
+                  />
+                </Link>
+              </p>
+              <p>Species:
+                <Link to={`/species/${speciesId}`} >
+                  <Species
+                    name=""
+                    id={speciesId}
+                    key={speciesId}
+                  />
+                </Link>
+              </p>
             </div>
 
             <div className="center pa3 w-50 details">
@@ -73,45 +94,49 @@ class CharacterDetail extends Component {
           </div>
           <div className="flex flex-wrap justify-around pa3 ml2 mr2 w100 details">
 
-            <div>
+            <div className="center pa3 w-50 details">
               <h3>Vehicles</h3>
-              {
-                person.vehicles.length === 0 ? <p>Unknown</p> :
+              <div className="flex flex-wrap justify-around">
+                {
+                  person.vehicles.length === 0 ? <p>Unknown</p> :
 
-                  person.vehicles.map(vehicle => {
-                    const id = getIndex(vehicle);
+                    person.vehicles.map(vehicle => {
+                      const id = getIndex(vehicle);
 
-                    return (
-                      <Link to={`/vehicles/${id}`} key={id}>
-                        <Vehicle
-                          name=""
-                          id={id}
-                          key={id}/>
-                      </Link>
-                    )
-                  })
-              }
+                      return (
+                        <Link to={`/vehicles/${id}`} key={id}>
+                          <Vehicle
+                            name=""
+                            id={id}
+                            key={id}/>
+                        </Link>
+                      )
+                    })
+                }
+              </div>
             </div>
-            <div>
+
+            <div className="center pa3 w-50 details">
               <h3>Starships</h3>
-              {
-                person.starships.length === 0 ? <p>Unknown</p> :
+              <div className="flex flex-wrap justify-around">
+                {
+                  person.starships.length === 0 ? <p>Unknown</p> :
 
-                  person.starships.map(starship => {
-                    const id = getIndex(starship);
+                    person.starships.map(starship => {
+                      const id = getIndex(starship);
 
-                    return (
-                      <Link to={`/starships/${id}`} key={id}>
-                        <Starship
-                          name=""
-                          id={id}
-                          key={id}/>
-                      </Link>
-                    )
-                  })
-              }
+                      return (
+                        <Link to={`/starships/${id}`} key={id}>
+                          <Starship
+                            name=""
+                            id={id}
+                            key={id}/>
+                        </Link>
+                      )
+                    })
+                }
+              </div>
             </div>
-
 
           </div>
         </div>
