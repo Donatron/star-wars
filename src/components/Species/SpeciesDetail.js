@@ -25,17 +25,19 @@ class SpeciesDetail extends Component {
         <Loader />
       )
     } else {
+      const homeWorldId = getIndex(specie.homeworld);
+
       return (
         <div>
-          <div className="w-100 text-center">
+          <div className="center">
             <h2>{specie.name}</h2>
           </div>
-          <div className="tc white flex justify-around">
+          <div className="w-100 pa3 ml5 flex justify-start species-detail">
             <Species
               name=""
               id={id}
               key={id}/>
-            <div>
+            <div className="pa3 ml5 details">
               <p>Classification: {specie.classification}</p>
               <p>Designation: {specie.designation}</p>
               <p>Average Height: {specie.avaergae_height}cm</p>
@@ -44,11 +46,20 @@ class SpeciesDetail extends Component {
               <p>Eye Colours: {specie.eye_colors}</p>
               <p>Average Lifespan: {specie.average_lifespan}</p>
               <p>Language: {specie.language}</p>
-              <p>Home World: {specie.homeworld}</p>
+              <p>Home World:
+                <Link to={`/planets/${homeWorldId}`} >
+                  <Planet
+                    name=""
+                    id={homeWorldId}
+                    key={homeWorldId}
+                  />
+                </Link>
+              </p>
             </div>
           </div>
-          <div>
+          <div className="center pa3 w-80 details">
             <h3>People</h3>
+            <div className="flex flex-wrap justify-around">
             {
               specie.people.map((person, i) => {
                 let id = getIndex(person);
@@ -64,8 +75,10 @@ class SpeciesDetail extends Component {
               })
             }
           </div>
-          <div>
+          </div>
+          <div className="center pa3 w-80 details">
             <h3>Appears In Films</h3>
+            <div className="flex flex-wrap justify-around">
               {
                 specie.films.map((film, i) => {
                   let id = getIndex(film);
@@ -80,6 +93,7 @@ class SpeciesDetail extends Component {
                   )
                 })
               }
+            </div>
           </div>
         </div>
       )

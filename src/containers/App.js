@@ -45,7 +45,7 @@ const particlesOptions = {
       random: true
     },
     move: {
-      speed: 1.5
+      speed: 1
     }
   }
 }

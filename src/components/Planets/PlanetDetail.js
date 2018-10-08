@@ -30,11 +30,11 @@ class PlanetDetail extends Component {
           <div className="w-100 text-center">
             <h2>{planet.name}</h2>
           </div>
-          <div className="tc white flex justify-around">
+          <div className="w-100 pa3 ml5 flex justify-start planet-detail">
             <Planet
               name={""}
               id={id}/>
-            <div>
+            <div className="pa3 ml5 details">
               <p>Rotation Period: {planet.rotation_period} hours</p>
               <p>Orbital Period: {planet.orbital_period} days</p>
               <p>Diameter: {planet.diameter} km</p>
@@ -45,40 +45,45 @@ class PlanetDetail extends Component {
               <p>Population: {planet.population}</p>
             </div>
           </div>
-          <div>
+          <div className="center pa3 w-50 details">
             <h3>Inhabitants</h3>
-            {
-              planet.residents.map((resident, i) => {
-                let id = getIndex(resident);
-
-                return (
-                  <Link to={`/characters/${id}`} key={id}>
-                    <Character
-                      name={resident.name}
-                      id={id}
-                      key={id}/>
-                  </Link>
-                )
-              })
-            }
-
-          </div>
-          <div>
-            <h3>Appears In Films</h3>
+            <div className="flex flex-wrap justify-around">
               {
-                planet.films.map((film, i) => {
-                  let id = getIndex(film);
+                planet.residents.map((resident, i) => {
+                  let id = getIndex(resident);
 
                   return (
-                    <Link to={`/films/${id}`} key={id}>
-                      <Film
-                        name={film.name}
+                    <Link to={`/characters/${id}`} key={id}>
+                      <Character
+                        name={resident.name}
                         id={id}
                         key={id}/>
                     </Link>
                   )
                 })
               }
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-around pa3 ml2 mr2 w100 details">
+            <div className="center pa3 w-50 details">
+              <h3>Appears In Films</h3>
+              <div className="flex flex-wrap justify-around">
+                {
+                  planet.films.map((film, i) => {
+                    let id = getIndex(film);
+
+                    return (
+                      <Link to={`/films/${id}`} key={id}>
+                        <Film
+                          name={film.name}
+                          id={id}
+                          key={id}/>
+                      </Link>
+                    )
+                  })
+                }
+              </div>
+            </div>
           </div>
         </div>
       )

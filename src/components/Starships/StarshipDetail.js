@@ -30,12 +30,12 @@ class StarshipDetail extends Component {
           <div className="w-100 text-center">
             <h2>{starship.name}</h2>
           </div>
-          <div className="tc white flex justify-around">
+          <div className="w-100 pa3 ml5 flex justify-start starship-detail">
             <Starship
               name=""
               id={id}
               key={id}/>
-            <div>
+            <div className="pa3 ml5 details">
               <p>Model: {starship.model}</p>
               <p>Manufacturer: {starship.manufacturer}</p>
               <p>Starship Class: {starship.starship_class}</p>
@@ -50,8 +50,9 @@ class StarshipDetail extends Component {
               <p>MGLT: {starship.MGLT}</p>
             </div>
           </div>
-          <div>
+          <div className="center pa3 w-50 details">
             <h3>Pilots</h3>
+            <div className="flex flex-wrap justify-around">
               {
                 starship.pilots.length !== 0 ?
                 starship.pilots.map((pilot, i) => {
@@ -67,9 +68,11 @@ class StarshipDetail extends Component {
                   )
                 }) : <p>Unknown</p>
               }
+            </div>
           </div>
-          <div>
+          <div className="center pa3 w-50 details">
             <h3>Appears In Films</h3>
+            <div className="flex flex-wrap justify-around">
               {
                 starship.films.map((film, i) => {
                   const id = getIndex(film);
@@ -84,6 +87,7 @@ class StarshipDetail extends Component {
                   )
                 })
               }
+            </div>
           </div>
         </div>
       )

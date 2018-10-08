@@ -30,12 +30,12 @@ class VehicleDetail extends Component {
             <div className="w-100 text-center">
               <h2>{vehicle.name}</h2>
             </div>
-            <div className="tc white flex justify-around">
+            <div className="w-100 pa3 ml5 flex justify-start vehicle-detail">
               <Vehicle
                 name=""
                 id={id}
                 key={id}/>
-              <div>
+              <div className="pa3 ml5 details">
                 <p>Model: {vehicle.model}</p>
                 <p>Manufacturer: {vehicle.manufacturer}</p>
                 <p>Vehicle Class: {vehicle.vehicle_class}</p>
@@ -48,8 +48,9 @@ class VehicleDetail extends Component {
                 <p>Consumables: {vehicle.consumables}</p>
               </div>
             </div>
-            <div>
+            <div className="center pa3 w-50 details">
               <h3>Pilots</h3>
+              <div className="flex flex-wrap justify-around">
                 {
                   vehicle.pilots.length !== 0 ?
                   vehicle.pilots.map((pilot, i) => {
@@ -65,9 +66,11 @@ class VehicleDetail extends Component {
                     )
                   }) : <p>Unknown</p>
                 }
+              </div>
             </div>
-            <div>
+            <div className="center pa3 w-50 details">
               <h3>Appears In Films</h3>
+              <div className="flex flex-wrap justify-around">
                 {
                   vehicle.films.map((film, i) => {
                     let id = getIndex(film);
@@ -82,6 +85,7 @@ class VehicleDetail extends Component {
                     )
                   })
                 }
+              </div>
             </div>
           </div>
         )
