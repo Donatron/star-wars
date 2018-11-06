@@ -2,12 +2,8 @@
   "name": "star-wars-info",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "npm": "6.4.1",
-    "node": "8.11.3"
-  },
   "scripts": {
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

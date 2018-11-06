@@ -4,25 +4,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ReduxPromise from 'redux-promise';
 import Particles from 'react-particles-js';
-import Home from '../components/Home/Home';
 
 import reducers from '../reducers';
 
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
+import Router from '../components/Router';
 import SearchBox from '../components/Search/SearchBox';
-import CharacterList from '../components/Characters/CharacterList';
-import CharacterDetail from '../components/Characters/CharacterDetail';
-import FilmList from '../components/Films/FilmList';
-import FilmDetail from '../components/Films/FilmDetail';
-import PlanetList from '../components/Planets/PlanetList';
-import PlanetDetail from '../components/Planets/PlanetDetail';
-import SpeciesList from '../components/Species/SpeciesList';
-import SpeciesDetail from '../components/Species/SpeciesDetail';
-import StarshipList from '../components/Starships/StarshipList';
-import StarshipDetail from '../components/Starships/StarshipDetail';
-import VehicleList from '../components/Vehicles/VehicleList';
-import VehicleDetail from '../components/Vehicles/VehicleDetail';
 import Footer from '../components/Footer/Footer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -47,6 +35,15 @@ const particlesOptions = {
     move: {
       speed: 1
     }
+  }
+}
+
+function saveToLocalStorage(state) {
+  try{
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -83,9 +80,9 @@ class App extends Component {
 
     if(viewSearchBox) {
       searchBoxComponent = <SearchBox
-                             search={this.state.route}
-                             searchChange={this.onSearchChange}
-                           />;
+                              search={this.state.route}
+                              searchChange={this.onSearchChange}
+                            />;
     }
 
     return (
@@ -97,22 +94,7 @@ class App extends Component {
             <div>
               <Navigation onRouteChange={this.onRouteChange}/>
               { searchBoxComponent }
-
-              <Switch>
-                <Route path="/characters/:id" component={CharacterDetail} />
-                <Route path="/characters" component={CharacterList} />
-                <Route path="/films/:id" component={FilmDetail} />
-                <Route path="/films" component={FilmList} />
-                <Route path="/planets/:id" component={PlanetDetail} />
-                <Route path="/planets" component={PlanetList} />
-                <Route path="/vehicles/:id" component={VehicleDetail} />
-                <Route path="/vehicles" component={VehicleList} />
-                <Route path="/starships/:id" component={StarshipDetail} />
-                <Route path="/starships" component={StarshipList} />
-                <Route path="/species/:id" component={SpeciesDetail} />
-                <Route path="/species" component={SpeciesList} />
-                <Route path="/" component={Home} />
-              </Switch>
+              <Router />
               <Footer />
             </div>
           </BrowserRouter>
