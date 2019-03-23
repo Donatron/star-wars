@@ -1,12 +1,15 @@
-import React from 'react';
-import '../Loader/loader.css';
+import React from "react";
+import "../Loader/loader.css";
 
 const Loader = () => {
   return (
-    <div>
-      <p>Loading ...</p>
+    <div className="loader">
+      <img src={require(`../../assets/img/loader.gif`)} className="spinner" />
+      <p>
+        <em>Loading ...</em>
+      </p>
     </div>
   );
-}
+};
 
 export default Loader;

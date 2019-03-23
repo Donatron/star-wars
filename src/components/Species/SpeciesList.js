@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchSpecies } from '../../actions';
-import { getIndex } from '../../helpers';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchSpecies } from "../../actions";
+import { getIndex } from "../../helpers";
 
-import Species from './Species';
-import Loader from '../Loader/loader';
-import './Species.css'
+import Species from "./Species";
+import Loader from "../Loader/loader";
+import "./Species.css";
 
 class SpeciesList extends Component {
   constructor(props) {
@@ -15,50 +15,45 @@ class SpeciesList extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchSpecies();
+    if (this.props.species.length === 0) {
+      this.props.fetchSpecies();
+    }
   }
 
   renderSpecies() {
-    if (!this.props.species) {
-      return (
-        <Loader />
-      )
+    if (this.props.species.length === 0) {
+      return <Loader />;
     } else {
       return (
         <div className="tc white flex justify-around species">
-          {
-            this.props.species.map((specie, i) => {
-              let index = getIndex(specie.url);
+          {this.props.species.map((specie, i) => {
+            let index = getIndex(specie.url);
 
-              return (
-                  <Link to={`/species/${index}`} key={index}>
-                    <Species
-                      key={specie.name}
-                      id={index}
-                      name={specie.name}/>
-                  </Link>
-              )
-            })
-          }
+            return (
+              <Link to={`/species/${index}`} key={index}>
+                <Species key={specie.name} id={index} name={specie.name} />
+              </Link>
+            );
+          })}
         </div>
-      )
+      );
     }
   }
 
   render() {
-    return (
-      <div>{this.renderSpecies()}</div>
-    )
+    return <div>{this.renderSpecies()}</div>;
   }
 }
 
 function mapStateToProps(state) {
-  return { species: state.species.results }
+  return { species: state.species };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchSpecies }, dispatch);
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(SpeciesList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SpeciesList);
