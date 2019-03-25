@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import PeopleReducer from "./reducer_people";
 import PersonReducer from "./reducer_person";
 import FilmsReducer from "./reducer_films";
+import FilmReducer from "./reducer_film";
 import PlanetsReducer from "./reducer_planets";
 import VehiclesReducer from "./reducer_vehicles";
 import StarshipsReducer from "./reducer_starships";
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   people: PeopleReducer,
   selectedPerson: PersonReducer,
   films: FilmsReducer,
+  selectedFilm: FilmReducer,
   planets: PlanetsReducer,
   vehicles: VehiclesReducer,
   starships: StarshipsReducer,
