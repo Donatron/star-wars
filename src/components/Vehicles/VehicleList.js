@@ -8,6 +8,7 @@ import { getIndex } from "../../helpers";
 import Vehicle from "./Vehicle";
 import Loader from "../Loader/loader";
 import "./Vehicles.css";
+import SearchBox from "../Search/SearchBox";
 
 class VehicleList extends Component {
   componentDidMount() {
@@ -21,16 +22,19 @@ class VehicleList extends Component {
       return <Loader />;
     } else {
       return (
-        <div className="tc white flex justify-around vehicles">
-          {this.props.vehicles.map((vehicle, i) => {
-            let id = getIndex(vehicle.url);
+        <div className="">
+          <SearchBox search={"vehicles"} />
+          <div className="tc white flex justify-around vehicles">
+            {this.props.vehicles.map((vehicle, i) => {
+              let id = getIndex(vehicle.url);
 
-            return (
-              <Link to={`/vehicles/${id}`} key={id}>
-                <Vehicle key={vehicle.name} id={id} name={vehicle.name} />
-              </Link>
-            );
-          })}
+              return (
+                <Link to={`/vehicles/${id}`} key={id}>
+                  <Vehicle key={vehicle.name} id={id} name={vehicle.name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       );
     }

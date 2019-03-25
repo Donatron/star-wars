@@ -8,27 +8,28 @@ import { getIndex } from "../../helpers";
 import Film from "./Film";
 import Loader from "../Loader/loader";
 import "./Films.css";
+import SearchBox from "../Search/SearchBox";
 
 class FilmList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderFilms() {
     if (this.props.films.length === 0) {
       return <Loader />;
     } else {
       return (
-        <div className="tc white flex justify-around films">
-          {this.props.films.map((film, i) => {
-            let id = getIndex(film.url);
+        <div>
+          <SearchBox search={"films"} />
 
-            return (
-              <Link to={`/films/${id}`} key={id}>
-                <Film key={film.name} id={id} name={film.name} />
-              </Link>
-            );
-          })}
+          <div className="tc white flex justify-around films">
+            {this.props.films.map((film, i) => {
+              let id = getIndex(film.url);
+
+              return (
+                <Link to={`/films/${id}`} key={id}>
+                  <Film key={film.name} id={id} name={film.name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       );
     }

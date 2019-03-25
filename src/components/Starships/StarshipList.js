@@ -8,6 +8,7 @@ import { getIndex } from "../../helpers";
 import Starship from "./Starship";
 import Loader from "../Loader/loader";
 import "./Starships.css";
+import SearchBox from "../Search/SearchBox";
 
 class StarshipList extends Component {
   componentDidMount() {
@@ -21,17 +22,20 @@ class StarshipList extends Component {
       return <Loader />;
     } else {
       return (
-        <div className="tc white flex justify-around starships">
-          {this.props.starships.map((starship, i) => {
-            const id = getIndex(starship.url);
-            console.log(`Name: ${starship.name}. ID: ${id}`);
+        <div className="">
+          <SearchBox search={"starships"} />
+          <div className="tc white flex justify-around starships">
+            {this.props.starships.map((starship, i) => {
+              const id = getIndex(starship.url);
+              console.log(`Name: ${starship.name}. ID: ${id}`);
 
-            return (
-              <Link to={`/starships/${id}`} key={id}>
-                <Starship key={starship.name} id={id} name={starship.name} />
-              </Link>
-            );
-          })}
+              return (
+                <Link to={`/starships/${id}`} key={id}>
+                  <Starship key={starship.name} id={id} name={starship.name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       );
     }

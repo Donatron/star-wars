@@ -54,14 +54,14 @@ export const fetchPeople = () => async dispatch => {
   });
 };
 
-export function fetchPerson(id) {
-  const request = axios.get(`${ROOT_URL}/people/${id}`);
+export const fetchPerson = id => async dispatch => {
+  const request = await axios.get(`${ROOT_URL}/people/${id}`);
 
-  return {
+  dispatch({
     type: FETCH_PERSON,
     payload: request
-  };
-}
+  });
+};
 
 export const fetchFilms = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/films/`);

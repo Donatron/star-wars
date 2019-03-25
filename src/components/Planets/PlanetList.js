@@ -8,12 +8,9 @@ import { getIndex } from "../../helpers";
 import Planet from "./Planet";
 import "./Planets.css";
 import Loader from "../Loader/loader";
+import SearchBox from "../Search/SearchBox";
 
 class PlanetList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     if (this.props.planets.length === 0) {
       this.props.fetchPlanets();
@@ -29,15 +26,18 @@ class PlanetList extends Component {
       );
     } else {
       return (
-        <div className="tc white flex justify-around planets">
-          {this.props.planets.map((planet, i) => {
-            let id = getIndex(planet.url);
-            return (
-              <Link to={`/planets/${id}`} key={i}>
-                <Planet key={planet.name} id={id} name={planet.name} />
-              </Link>
-            );
-          })}
+        <div>
+          <SearchBox search={"planets"} />
+          <div className="tc white flex justify-around planets">
+            {this.props.planets.map((planet, i) => {
+              let id = getIndex(planet.url);
+              return (
+                <Link to={`/planets/${id}`} key={i}>
+                  <Planet key={planet.name} id={id} name={planet.name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       );
     }

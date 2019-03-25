@@ -8,12 +8,9 @@ import { getIndex } from "../../helpers";
 import Character from "./Character";
 import "../Characters/Character.css";
 import Loader from "../Loader/loader";
+import SearchBox from "../Search/SearchBox";
 
 class CharacterList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderPeople() {
     if (this.props.people.length === 0) {
       return (
@@ -23,15 +20,20 @@ class CharacterList extends Component {
       );
     } else {
       return (
-        <div className="tc white flex justify-around characters">
-          {this.props.people.map((person, i) => {
-            let id = getIndex(person.url);
-            return (
-              <Link to={`/characters/${id}`} key={id}>
-                <Character key={person.name} id={id} name={person.name} />
-              </Link>
-            );
-          })}
+        <div className="">
+          <div className="">
+            <SearchBox search={"characters"} />
+          </div>
+          <div className="tc white flex justify-around characters">
+            {this.props.people.map((person, i) => {
+              let id = getIndex(person.url);
+              return (
+                <Link to={`/characters/${id}`} key={id}>
+                  <Character key={person.name} id={id} name={person.name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       );
     }

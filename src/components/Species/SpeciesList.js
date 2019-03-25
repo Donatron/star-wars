@@ -8,12 +8,9 @@ import { getIndex } from "../../helpers";
 import Species from "./Species";
 import Loader from "../Loader/loader";
 import "./Species.css";
+import SearchBox from "../Search/SearchBox";
 
 class SpeciesList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     if (this.props.species.length === 0) {
       this.props.fetchSpecies();
@@ -25,16 +22,19 @@ class SpeciesList extends Component {
       return <Loader />;
     } else {
       return (
-        <div className="tc white flex justify-around species">
-          {this.props.species.map((specie, i) => {
-            let index = getIndex(specie.url);
+        <div className="">
+          <SearchBox search={"species"} />
+          <div className="tc white flex justify-around species">
+            {this.props.species.map((specie, i) => {
+              let index = getIndex(specie.url);
 
-            return (
-              <Link to={`/species/${index}`} key={index}>
-                <Species key={specie.name} id={index} name={specie.name} />
-              </Link>
-            );
-          })}
+              return (
+                <Link to={`/species/${index}`} key={index}>
+                  <Species key={specie.name} id={index} name={specie.name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       );
     }
