@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchSpecie } from '../../actions';
-import { getIndex } from '../../helpers';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchSpecie, clearSelectedSpecie } from "../../actions";
+import { getIndex } from "../../helpers";
 
-import Loader from '../Loader/loader';
-import Species from './Species';
-import Planet from '../Planets/Planet';
-import Character from '../Characters/Character';
-import Film from '../Films/Film';
+import Loader from "../Loader/loader";
+import Species from "./Species";
+import Planet from "../Planets/Planet";
+import Character from "../Characters/Character";
+import Film from "../Films/Film";
 
 class SpeciesDetail extends Component {
   componentDidMount() {
@@ -16,99 +16,155 @@ class SpeciesDetail extends Component {
     this.props.fetchSpecie(id);
   }
 
+  componentWillUnmount() {
+    this.props.clearSelectedSpecie();
+  }
+
+  renderDetails(
+    id,
+    name,
+    classification,
+    designation,
+    average_height,
+    skin_colors,
+    hair_colors,
+    eye_colors,
+    average_lifespan,
+    language,
+    homeWorldId
+  ) {
+    return (
+      <div>
+        <div className="center">
+          <h2>{name}</h2>
+        </div>
+        <div className="w-100 pa3 ml5 flex justify-start species-detail">
+          <Species name="" id={id} key={id} />
+          <div className="pa3 ml5 details">
+            <p>Classification: {classification}</p>
+            <p>Designation: {designation}</p>
+            <p>Average Height: {average_height}cm</p>
+            <p>Skin Colours: {skin_colors}</p>
+            <p>Hair Colours: {hair_colors}</p>
+            <p>Eye Colours: {eye_colors}</p>
+            <p>Average Lifespan: {average_lifespan}</p>
+            <p>Language: {language}</p>
+            <p>Home World:</p>
+            {homeWorldId ? this.renderHomeWorld(homeWorldId) : ""}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderPeople(people) {
+    return (
+      <div>
+        <h3>People</h3>
+        <div className="flex flex-wrap justify-around">
+          {people.map((person, i) => {
+            let id = getIndex(person);
+
+            return (
+              <Link to={`/characters/${id}`} key={id}>
+                <Character name="" id={id} key={id} />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  renderFilms(films) {
+    return (
+      <div>
+        <h3>Appears In Films</h3>
+        <div className="flex flex-wrap justify-around">
+          {films.map((film, i) => {
+            let id = getIndex(film);
+
+            return (
+              <Link to={`/films/${id}`} key={id}>
+                <Film name="" id={id} key={id} />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  renderHomeWorld(homeWorldId) {
+    return (
+      <Link to={`/planets/${homeWorldId}`}>
+        <Planet name="" id={homeWorldId} key={homeWorldId} />
+      </Link>
+    );
+  }
+
   renderSpecie() {
     const { specie } = this.props;
     const { id } = this.props.match.params;
+    const {
+      name,
+      classification,
+      designation,
+      average_height,
+      skin_colors,
+      hair_colors,
+      eye_colors,
+      average_lifespan,
+      language,
+      people,
+      films
+    } = specie;
 
-    if(!this.props.specie) {
-      return (
-        <Loader />
-      )
+    if (!name) {
+      return <Loader />;
     } else {
       const homeWorldId = getIndex(specie.homeworld);
 
       return (
         <div>
-          <div className="center">
-            <h2>{specie.name}</h2>
-          </div>
-          <div className="w-100 pa3 ml5 flex justify-start species-detail">
-            <Species
-              name=""
-              id={id}
-              key={id}/>
-            <div className="pa3 ml5 details">
-              <p>Classification: {specie.classification}</p>
-              <p>Designation: {specie.designation}</p>
-              <p>Average Height: {specie.avaergae_height}cm</p>
-              <p>Skin Colours: {specie.skin_colors}</p>
-              <p>Hair Colours: {specie.hair_colors}</p>
-              <p>Eye Colours: {specie.eye_colors}</p>
-              <p>Average Lifespan: {specie.average_lifespan}</p>
-              <p>Language: {specie.language}</p>
-              <p>Home World:
-                <Link to={`/planets/${homeWorldId}`} >
-                  <Planet
-                    name=""
-                    id={homeWorldId}
-                    key={homeWorldId}
-                  />
-                </Link>
-              </p>
-            </div>
-          </div>
-          <div className="center pa3 w-80 details">
-            <h3>People</h3>
-            <div className="flex flex-wrap justify-around">
-            {
-              specie.people.map((person, i) => {
-                let id = getIndex(person);
+          {name
+            ? this.renderDetails(
+                id,
+                name,
+                classification,
+                designation,
+                average_height,
+                skin_colors,
+                hair_colors,
+                eye_colors,
+                average_lifespan,
+                language,
+                homeWorldId
+              )
+            : ""}
 
-                return (
-                  <Link to={`/characters/${id}`} key={id}>
-                    <Character
-                      name=""
-                      id={id}
-                      key={id}/>
-                  </Link>
-                )
-              })
-            }
-          </div>
-          </div>
           <div className="center pa3 w-80 details">
-            <h3>Appears In Films</h3>
-            <div className="flex flex-wrap justify-around">
-              {
-                specie.films.map((film, i) => {
-                  let id = getIndex(film);
+            {people ? this.renderPeople(people) : ""}
+          </div>
 
-                  return (
-                    <Link to={`/films/${id}`} key={id}>
-                      <Film
-                        name=""
-                        id={id}
-                        key={id}/>
-                    </Link>
-                  )
-                })
-              }
-            </div>
+          <div className="center pa3 w-80 details">
+            {films ? this.renderFilms(films) : ""}
           </div>
         </div>
-      )
+      );
     }
   }
 
   render() {
-    return (
-      <div>{this.renderSpecie()}</div>
-    )
+    return <div>{this.renderSpecie()}</div>;
   }
 }
 
-function mapStateToProps({ species }, ownProps) {
-  return { specie: species.specie }
+function mapStateToProps({ selectedSpecie }, ownProps) {
+  return { specie: selectedSpecie };
 }
 
-export default connect(mapStateToProps, { fetchSpecie })(SpeciesDetail);
+export default connect(
+  mapStateToProps,
+  { fetchSpecie, clearSelectedSpecie }
+)(SpeciesDetail);

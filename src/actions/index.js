@@ -2,16 +2,22 @@ import axios from "axios";
 
 export const FETCH_PEOPLE = "FETCH_PEOPLE";
 export const FETCH_PERSON = "FETCH_PERSON";
+export const CLEAR_PERSON = "CLEAR_PERSON";
 export const FETCH_FILMS = "FETCH_FILMS";
 export const FETCH_FILM = "FETCH_FILM";
+export const CLEAR_FILM = "CLEAR_FILM";
 export const FETCH_PLANETS = "FETCH_PLANETS";
 export const FETCH_PLANET = "FETCH_PLANET";
+export const CLEAR_PLANET = "CLEAR_PLANET";
 export const FETCH_VEHICLES = "FETCH_VEHICLES";
 export const FETCH_VEHICLE = "FETCH_VEHICLE";
+export const CLEAR_VEHICLE = "CLEAR_VEHICLE";
 export const FETCH_STARSHIPS = "FETCH_STARSHIPS";
 export const FETCH_STARSHIP = "FETCH_STARSHIP";
+export const CLEAR_STARSHIP = "CLEAR_STARSHIP";
 export const FETCH_SPECIES = "FETCH_SPECIES";
 export const FETCH_SPECIE = "FETCH_SPECIE";
+export const CLEAR_SPECIE = "CLEAR_SPECIE";
 
 const ROOT_URL = "https://swapi.co/api";
 
@@ -63,6 +69,12 @@ export const fetchPerson = id => async dispatch => {
   });
 };
 
+export const clearSelectedPerson = () => {
+  return {
+    type: CLEAR_PERSON
+  };
+};
+
 export const fetchFilms = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/films/`);
 
@@ -111,6 +123,12 @@ export const fetchFilm = id => async dispatch => {
   });
 };
 
+export const clearSelectedFilm = () => {
+  return {
+    type: CLEAR_FILM
+  };
+};
+
 export const fetchPlanets = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/planets/`);
 
@@ -150,14 +168,20 @@ export const fetchPlanets = () => async dispatch => {
   });
 };
 
-export function fetchPlanet(id) {
-  const request = axios.get(`${ROOT_URL}/planets/${id}`);
+export const fetchPlanet = id => async dispatch => {
+  const request = await axios.get(`${ROOT_URL}/planets/${id}`);
 
-  return {
+  dispatch({
     type: FETCH_PLANET,
     payload: request
+  });
+};
+
+export const clearSelectedPlanet = () => {
+  return {
+    type: CLEAR_PLANET
   };
-}
+};
 
 export const fetchVehicles = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/vehicles/`);
@@ -198,14 +222,20 @@ export const fetchVehicles = () => async dispatch => {
   });
 };
 
-export function fetchVehicle(id) {
-  let request = axios.get(`${ROOT_URL}/vehicles/${id}`);
+export const fetchVehicle = id => async dispatch => {
+  let request = await axios.get(`${ROOT_URL}/vehicles/${id}`);
 
-  return {
+  dispatch({
     type: FETCH_VEHICLE,
     payload: request
+  });
+};
+
+export const clearSelectedVehicle = () => {
+  return {
+    type: CLEAR_VEHICLE
   };
-}
+};
 
 export const fetchStarships = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/starships/`);
@@ -246,14 +276,20 @@ export const fetchStarships = () => async dispatch => {
   });
 };
 
-export function fetchStarship(id) {
-  let request = axios.get(`${ROOT_URL}/starships/${id}`);
+export const fetchStarship = id => async dispatch => {
+  let request = await axios.get(`${ROOT_URL}/starships/${id}`);
 
-  return {
+  dispatch({
     type: FETCH_STARSHIP,
     payload: request
+  });
+};
+
+export const clearSelectedStarship = () => {
+  return {
+    type: CLEAR_STARSHIP
   };
-}
+};
 
 export const fetchSpecies = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/species/`);
@@ -294,11 +330,17 @@ export const fetchSpecies = () => async dispatch => {
   });
 };
 
-export function fetchSpecie(id) {
-  let request = axios.get(`${ROOT_URL}/species/${id}`);
+export const fetchSpecie = id => async dispatch => {
+  let request = await axios.get(`${ROOT_URL}/species/${id}`);
 
-  return {
+  dispatch({
     type: FETCH_SPECIE,
     payload: request
+  });
+};
+
+export const clearSelectedSpecie = () => {
+  return {
+    type: CLEAR_SPECIE
   };
-}
+};

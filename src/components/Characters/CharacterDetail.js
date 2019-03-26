@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchPerson } from "../../actions";
+import { fetchPerson, clearSelectedPerson } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Character from "./Character";
@@ -16,6 +16,33 @@ class CharacterDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchPerson(id);
+  }
+
+  componentWillUnmount() {
+    this.props.clearSelectedPerson();
+  }
+
+  renderDetails(
+    height,
+    mass,
+    hair_color,
+    skin_color,
+    eye_color,
+    birth_year,
+    gender
+  ) {
+    return (
+      <div>
+        <h3>Character Details</h3>
+        <p>Height: {height} cm</p>
+        <p>Mass: {mass} kg</p>
+        <p>Hair Colour: {hair_color}</p>
+        <p>Skin Colour: {skin_color}</p>
+        <p>Eye Colour: {eye_color}</p>
+        <p>Born: {birth_year}</p>
+        <p>Gender: {gender}</p>
+      </div>
+    );
   }
 
   renderHomeWorld(homeWorldId) {
@@ -93,9 +120,23 @@ class CharacterDetail extends Component {
   render() {
     const { person } = this.props;
     const { id } = this.props.match.params;
-    const { homeworld, species, films, vehicles, starships } = person;
+    const {
+      name,
+      height,
+      mass,
+      hair_color,
+      skin_color,
+      eye_color,
+      birth_year,
+      gender,
+      homeworld,
+      species,
+      films,
+      vehicles,
+      starships
+    } = person;
 
-    if (!person) {
+    if (!name) {
       return <Loader />;
     } else {
       const homeWorldId = getIndex(`"${homeworld}"`);
@@ -105,21 +146,24 @@ class CharacterDetail extends Component {
       return (
         <div className="center">
           <div>
-            <h2>{person.name}</h2>
+            <h2>{name ? name : ""}</h2>
           </div>
           <div className="w-100 pa3 ml5 flex justify-start character-detail">
-            <Character key={person.name} id={id} name={""} />
+            <Character key={name} id={id} name={""} />
 
             <div className="pa3 ml5 details">
-              <h3>Character Details</h3>
-              <p>Height: {person.height} cm</p>
-              <p>Mass: {person.mass} kg</p>
-              <p>Hair Colour: {person.hair_color}</p>
-              <p>Skin Colour: {person.skin_color}</p>
-              <p>Eye Colour: {person.eye_color}</p>
-              <p>Born: {person.birth_year}</p>
-              <p>Gender: {person.gender}</p>
-
+              {name
+                ? this.renderDetails(
+                    name,
+                    height,
+                    mass,
+                    hair_color,
+                    skin_color,
+                    eye_color,
+                    birth_year,
+                    gender
+                  )
+                : ""}
               <p>Home World:</p>
               {homeWorldId ? this.renderHomeWorld(homeWorldId) : ""}
 
@@ -156,5 +200,5 @@ function mapStateToProps({ selectedPerson }, ownProps) {
 
 export default connect(
   mapStateToProps,
-  { fetchPerson }
+  { fetchPerson, clearSelectedPerson }
 )(CharacterDetail);
