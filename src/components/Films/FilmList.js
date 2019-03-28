@@ -8,7 +8,7 @@ import { getIndex } from "../../helpers";
 import Film from "./Film";
 import Loader from "../Loader/loader";
 import "./Films.css";
-import SearchBox from "../Search/SearchBox";
+// import SearchBox from "../Search/SearchBox";
 
 class FilmList extends Component {
   renderFilms() {
@@ -17,7 +17,7 @@ class FilmList extends Component {
     } else {
       return (
         <div>
-          <SearchBox search={"films"} />
+          {/* <SearchBox search={"films"} onSearchChange={this.onSearchChange} /> */}
 
           <div className="tc white flex justify-around films">
             {this.props.films.map((film, i) => {

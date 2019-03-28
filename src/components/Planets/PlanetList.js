@@ -8,7 +8,7 @@ import { getIndex } from "../../helpers";
 import Planet from "./Planet";
 import "./Planets.css";
 import Loader from "../Loader/loader";
-import SearchBox from "../Search/SearchBox";
+// import SearchBox from "../Search/SearchBox";
 
 class PlanetList extends Component {
   componentDidMount() {
@@ -27,7 +27,7 @@ class PlanetList extends Component {
     } else {
       return (
         <div>
-          <SearchBox search={"planets"} />
+          {/* <SearchBox search={"planets"} /> */}
           <div className="tc white flex justify-around planets">
             {this.props.planets.map((planet, i) => {
               let id = getIndex(planet.url);

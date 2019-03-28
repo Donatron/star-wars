@@ -8,9 +8,19 @@ import { getIndex } from "../../helpers";
 import Character from "./Character";
 import "../Characters/Character.css";
 import Loader from "../Loader/loader";
-import SearchBox from "../Search/SearchBox";
+// import SearchBox from "../Search/SearchBox";
 
 class CharacterList extends Component {
+  componentDidMount() {
+    if (this.props.people.length === 0) {
+      this.props.fetchPeople();
+    }
+  }
+
+  onSearchChange = e => {
+    console.log(e.target.value);
+  };
+
   renderPeople() {
     if (this.props.people.length === 0) {
       return (
@@ -22,7 +32,10 @@ class CharacterList extends Component {
       return (
         <div className="">
           <div className="">
-            <SearchBox search={"characters"} />
+            {/* <SearchBox
+              search={"characters"}
+              onSearchChange={this.onSearchChange}
+            /> */}
           </div>
           <div className="tc white flex justify-around characters">
             {this.props.people.map((person, i) => {
@@ -36,12 +49,6 @@ class CharacterList extends Component {
           </div>
         </div>
       );
-    }
-  }
-
-  componentDidMount() {
-    if (this.props.people.length === 0) {
-      this.props.fetchPeople();
     }
   }
 

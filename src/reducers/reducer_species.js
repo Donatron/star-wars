@@ -1,4 +1,4 @@
-import { FETCH_SPECIES, FETCH_SPECIE } from "../actions";
+import { FETCH_SPECIES } from "../actions";
 
 export default function(state = [], action) {
   switch (action.type) {

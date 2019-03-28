@@ -8,7 +8,7 @@ import { getIndex } from "../../helpers";
 import Starship from "./Starship";
 import Loader from "../Loader/loader";
 import "./Starships.css";
-import SearchBox from "../Search/SearchBox";
+// import SearchBox from "../Search/SearchBox";
 
 class StarshipList extends Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class StarshipList extends Component {
     } else {
       return (
         <div className="">
-          <SearchBox search={"starships"} />
+          {/* <SearchBox search={"starships"} /> */}
           <div className="tc white flex justify-around starships">
             {this.props.starships.map((starship, i) => {
               const id = getIndex(starship.url);

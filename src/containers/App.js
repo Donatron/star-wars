@@ -89,7 +89,6 @@ class App extends Component {
           <div>
             <Navigation onRouteChange={this.onRouteChange} />
             {searchBoxComponent}
-
             <Switch>
               <Route path="/characters/:id" component={CharacterDetail} />
               <Route path="/characters" component={CharacterList} />

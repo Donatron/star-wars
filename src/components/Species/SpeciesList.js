@@ -8,7 +8,7 @@ import { getIndex } from "../../helpers";
 import Species from "./Species";
 import Loader from "../Loader/loader";
 import "./Species.css";
-import SearchBox from "../Search/SearchBox";
+// import SearchBox from "../Search/SearchBox";
 
 class SpeciesList extends Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class SpeciesList extends Component {
     } else {
       return (
         <div className="">
-          <SearchBox search={"species"} />
+          {/* <SearchBox search={"species"} /> */}
           <div className="tc white flex justify-around species">
             {this.props.species.map((specie, i) => {
               let index = getIndex(specie.url);

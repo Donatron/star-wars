@@ -154,7 +154,6 @@ class CharacterDetail extends Component {
             <div className="pa3 ml5 details">
               {name
                 ? this.renderDetails(
-                    name,
                     height,
                     mass,
                     hair_color,

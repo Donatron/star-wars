@@ -27,8 +27,10 @@
     "tachyons": "^4.10.0"
   },
   "devDependencies": {
-    "eslint-config-rallycoding": "^3.2.0"
+    "eslint-config-rallycoding": "^3.2.0",
+    "gh-pages": "^2.0.1"
   },
+  "homepage": "https://github.com/Donatron/star-wars-info",
   "browserslist": [
     ">0.2%",
     "not dead",
