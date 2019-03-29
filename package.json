@@ -25,6 +25,7 @@
     "redux": "^4.0.0",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
+    "roman-numerals": "^0.3.2",
     "save": "^2.3.2",
     "tachyons": "^4.10.0"
   },

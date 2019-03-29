@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchFilm, clearSelectedFilm } from "../../actions";
 import { getIndex } from "../../helpers";
+import romanNumerals from "roman-numerals";
 
 import Loader from "../Loader/loader";
 import Film from "./Film";
@@ -20,33 +21,6 @@ class FilmDetail extends Component {
 
   componentWillUnmount() {
     this.props.clearSelectedFilm();
-  }
-
-  convertToRoman(num) {
-    var roman = {
-      M: 1000,
-      CM: 900,
-      D: 500,
-      CD: 400,
-      C: 100,
-      XC: 90,
-      L: 50,
-      XL: 40,
-      X: 10,
-      IX: 9,
-      V: 5,
-      IV: 4,
-      I: 1
-    };
-    var str = "";
-
-    for (var i of Object.keys(roman)) {
-      var q = Math.floor(num / roman[i]);
-      num -= q * roman[i];
-      str += i.repeat(q);
-    }
-
-    return str;
   }
 
   renderTitle(romanId, title, director) {
@@ -198,8 +172,7 @@ class FilmDetail extends Component {
     if (!title) {
       return <Loader />;
     } else {
-      // const episodeID = film.episode_id;
-      const romanId = this.convertToRoman(episode_id);
+      const romanId = romanNumerals.toRoman(episode_id);
 
       return (
         <div>
