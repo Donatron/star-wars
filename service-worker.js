@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Donatron/star-wars/precache-manifest.97d1a3d4a06f1b752a87a87a9e6a0d0e.js"
+  "/Donatron/star-wars/precache-manifest.2f96d5d0e54bfe2d9928e6189f1a5401.js"
 );
 
 workbox.clientsClaim();

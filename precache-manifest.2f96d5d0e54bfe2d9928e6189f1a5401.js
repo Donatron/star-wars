@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/Donatron/star-wars/static/media/8.84fe4b5d.jpg"
   },
   {
-    "revision": "dee4f497bd347ed05c4f",
-    "url": "/Donatron/star-wars/static/css/main.c93ea196.chunk.css"
+    "revision": "20fa953aeacd7a584272",
+    "url": "/Donatron/star-wars/static/css/main.b4c770d8.chunk.css"
   },
   {
     "revision": "bff8412ec0af1fc03e64",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/Donatron/star-wars/static/media/9.1f4414a5.jpg"
   },
   {
-    "revision": "ad1cc5f5d35d5d9c5c2f",
+    "revision": "03af9bd5a8e0786a7911",
     "url": "/Donatron/star-wars/static/js/2.a3b6fd63.chunk.js"
   },
   {
@@ -556,8 +556,8 @@ self.__precacheManifest = [
     "url": "/Donatron/star-wars/static/media/76.702e7268.jpg"
   },
   {
-    "revision": "dee4f497bd347ed05c4f",
-    "url": "/Donatron/star-wars/static/js/main.2d5fa5a2.chunk.js"
+    "revision": "20fa953aeacd7a584272",
+    "url": "/Donatron/star-wars/static/js/main.c27fdc5a.chunk.js"
   },
   {
     "revision": "569a79d7a2160d4286d39700234deee4",
@@ -1108,11 +1108,11 @@ self.__precacheManifest = [
     "url": "/Donatron/star-wars/static/media/8.f05cd155.jpg"
   },
   {
-    "revision": "ad1cc5f5d35d5d9c5c2f",
-    "url": "/Donatron/star-wars/static/css/2.fec608c8.chunk.css"
+    "revision": "03af9bd5a8e0786a7911",
+    "url": "/Donatron/star-wars/static/css/2.24c8877a.chunk.css"
   },
   {
-    "revision": "96e3c5e2e568d12ecd93ff180b452081",
+    "revision": "1515d7e0d79ca33261c96a54f71597a0",
     "url": "/Donatron/star-wars/index.html"
   }
 ];
