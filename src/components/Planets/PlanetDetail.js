@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchPlanet, clearSelectedPlanet } from "../../actions";
 import { getIndex } from "../../helpers";
+import accounting from "accounting";
 
 import Loader from "../Loader/loader";
 import Planet from "./Planet";
@@ -40,13 +41,15 @@ class PlanetDetail extends Component {
           <Planet name={""} id={id} />
           <div className="pa3 ml5 details">
             <p>Rotation Period: {rotation_period} hours</p>
-            <p>Orbital Period: {orbital_period} days</p>
-            <p>Diameter: {diameter} km</p>
+            <p>
+              Orbital Period: {accounting.formatNumber(orbital_period)} days
+            </p>
+            <p>Diameter: {accounting.formatNumber(diameter)} km</p>
             <p>Climate: {climate}</p>
             <p>Gravity: {gravity}</p>
             <p>Terrain: {terrain}</p>
             <p>Surface Water: {surface_water}</p>
-            <p>Population: {population}</p>
+            <p>Population: {accounting.formatNumber(population)}</p>
           </div>
         </div>
       </div>

@@ -35,7 +35,7 @@ class CharacterDetail extends Component {
       <div>
         <h3>Character Details</h3>
         <p>Height: {height} cm</p>
-        <p>Mass: {mass} kg</p>
+        <p>Mass: {mass === "unknown" ? "unknown" : mass + " kg"}</p>
         <p>Hair Colour: {hair_color}</p>
         <p>Skin Colour: {skin_color}</p>
         <p>Eye Colour: {eye_color}</p>

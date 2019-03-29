@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchStarship, clearSelectedStarship } from "../../actions";
 import { getIndex } from "../../helpers";
+import accounting from "accounting";
 
 import Loader from "../Loader/loader";
 import Starship from "./Starship";
@@ -46,14 +47,21 @@ class StarshipDetail extends Component {
             <p>Model: {model}</p>
             <p>Manufacturer: {manufacturer}</p>
             <p>Starship Class: {starship_class}</p>
-            <p>Cost In Credits: {cost_in_credits}</p>
-            <p>Length: {length} m</p>
-            <p>Max. Atmosphering Speed: {max_atmosphering_speed}</p>
-            <p>Crew: {crew}</p>
-            <p>Passengers: {passengers}</p>
-            <p>Cargo Capacity: {cargo_capacity}</p>
-            <p>Consumables: {consumables}</p>
-            <p>Hyper Drive Rating: {hyperdrive_rating}</p>
+            <p>Cost In Credits: {accounting.formatNumber(cost_in_credits)}</p>
+            <p>Length: {accounting.formatNumber(length)} m</p>
+            <p>
+              Max. Atmosphering Speed:{" "}
+              {max_atmosphering_speed === "n/a"
+                ? "Not Applicable"
+                : accounting.formatNumber(max_atmosphering_speed)}
+            </p>
+            <p>Crew: {accounting.formatNumber(crew)}</p>
+            <p>Passengers: {accounting.formatNumber(passengers)}</p>
+            <p>Cargo Capacity: {accounting.formatNumber(cargo_capacity)}</p>
+            <p>Consumables: {accounting.formatNumber(consumables)}</p>
+            <p>
+              Hyper Drive Rating: {accounting.formatNumber(hyperdrive_rating)}
+            </p>
             <p>MGLT: {MGLT}</p>
           </div>
         </div>

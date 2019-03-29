@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchVehicle, clearSelectedVehicle } from "../../actions";
 import { getIndex } from "../../helpers";
+import accounting from "accounting";
 
 import Loader from "../Loader/loader";
 import Vehicle from "./Vehicle";
@@ -39,13 +40,21 @@ class VehicleDetail extends Component {
           <p>Model: {model}</p>
           <p>Manufacturer: {manufacturer}</p>
           <p>Vehicle Class: {vehicle_class}</p>
-          <p>Cost In Credits: {cost_in_credits}</p>
+          <p>
+            Cost In Credits:{" "}
+            {cost_in_credits === "unknown"
+              ? "Unkknown"
+              : accounting.formatNumber(cost_in_credits)}
+          </p>
           <p>Length: {length} m</p>
-          <p>Max. Atmosphering Speed: {max_atmosphering_speed}</p>
+          <p>
+            Max. Atmosphering Speed:{" "}
+            {accounting.formatNumber(max_atmosphering_speed)}
+          </p>
           <p>Crew: {crew}</p>
           <p>Passengers: {passengers}</p>
-          <p>Cargo Capacity: {cargo_capacity}</p>
-          <p>Consumables: {consumables}</p>
+          <p>Cargo Capacity: {accounting.formatNumber(cargo_capacity)}</p>
+          <p>Consumables: {accounting.formatNumber(consumables)}</p>
         </div>
       </div>
     );
