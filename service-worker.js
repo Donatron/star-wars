@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Donatron/star-wars/precache-manifest.2f96d5d0e54bfe2d9928e6189f1a5401.js"
+  "/star-wars/precache-manifest.637e1aedbfe6bbc7444c5c06dc61dfd4.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Donatron/star-wars/index.html", {
+workbox.routing.registerNavigationRoute("/star-wars/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
