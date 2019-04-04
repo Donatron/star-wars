@@ -21,6 +21,7 @@ import VehicleList from "../components/Vehicles/VehicleList";
 import VehicleDetail from "../components/Vehicles/VehicleDetail";
 import Footer from "../components/Footer/Footer";
 import Loader from "../components/Loader/loader";
+import Page404 from "../components/404/Page404";
 
 const particlesOptions = {
   particles: {
@@ -109,7 +110,8 @@ class App extends Component {
                 <Route path="/starships" component={StarshipList} />
                 <Route path="/species/:id" component={SpeciesDetail} />
                 <Route path="/species" component={SpeciesList} />
-                <Route path="/" component={Home} />
+                <Route path="/" exact component={Home} />
+                <Route component={Page404} />
               </Switch>
               <Footer />
             </div>
