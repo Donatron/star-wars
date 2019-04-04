@@ -6,39 +6,51 @@ import { fetchStarships } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Starship from "./Starship";
-import Loader from "../Loader/loader";
 import "./Starships.css";
-// import SearchBox from "../Search/SearchBox";
+import SearchBox from "../Search/SearchBox";
 
 class StarshipList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
   componentDidMount() {
     if (this.props.starships.length === 0) {
       this.props.fetchStarships();
     }
   }
 
-  render() {
-    if (this.props.starships.length === 0) {
-      return <Loader />;
-    } else {
-      return (
-        <div className="">
-          {/* <SearchBox search={"starships"} /> */}
-          <div className="tc white flex justify-around starships">
-            {this.props.starships.map((starship, i) => {
-              const id = getIndex(starship.url);
-              console.log(`Name: ${starship.name}. ID: ${id}`);
+  onSearchChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
 
-              return (
-                <Link to={`/starships/${id}`} key={id}>
-                  <Starship key={starship.name} id={id} name={starship.name} />
-                </Link>
-              );
-            })}
-          </div>
+  render() {
+    const { searchTerm } = this.state;
+    const filteredStarships = this.props.starships.filter(starship => {
+      return starship.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    return (
+      <div className="">
+        <SearchBox search={"starships"} onSearchChange={this.onSearchChange} />
+        <div className="tc white flex justify-around starships">
+          {filteredStarships.map((starship, i) => {
+            const id = getIndex(starship.url);
+            console.log(`Name: ${starship.name}. ID: ${id}`);
+
+            return (
+              <Link to={`/starships/${id}`} key={id}>
+                <Starship key={starship.name} id={id} name={starship.name} />
+              </Link>
+            );
+          })}
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 

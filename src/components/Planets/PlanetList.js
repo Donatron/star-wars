@@ -7,40 +7,48 @@ import { getIndex } from "../../helpers";
 
 import Planet from "./Planet";
 import "./Planets.css";
-import Loader from "../Loader/loader";
-// import SearchBox from "../Search/SearchBox";
+import SearchBox from "../Search/SearchBox";
 
 class PlanetList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
   componentDidMount() {
     if (this.props.planets.length === 0) {
       this.props.fetchPlanets();
     }
   }
 
+  onSearchChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
+
   renderPlanets() {
-    if (this.props.planets.length === 0) {
-      return (
-        <div>
-          <Loader />
+    const { searchTerm } = this.state;
+    const filteredPlanets = this.props.planets.filter(planet => {
+      return planet.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    return (
+      <div>
+        <SearchBox search={"planets"} onSearchChange={this.onSearchChange} />
+        <div className="tc white flex justify-around planets">
+          {filteredPlanets.map((planet, i) => {
+            let id = getIndex(planet.url);
+            return (
+              <Link to={`/planets/${id}`} key={i}>
+                <Planet key={planet.name} id={id} name={planet.name} />
+              </Link>
+            );
+          })}
         </div>
-      );
-    } else {
-      return (
-        <div>
-          {/* <SearchBox search={"planets"} /> */}
-          <div className="tc white flex justify-around planets">
-            {this.props.planets.map((planet, i) => {
-              let id = getIndex(planet.url);
-              return (
-                <Link to={`/planets/${id}`} key={i}>
-                  <Planet key={planet.name} id={id} name={planet.name} />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 
   render() {

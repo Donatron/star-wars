@@ -6,33 +6,45 @@ import { fetchFilms } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Film from "./Film";
-import Loader from "../Loader/loader";
 import "./Films.css";
-// import SearchBox from "../Search/SearchBox";
+import SearchBox from "../Search/SearchBox";
 
 class FilmList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
+  onSearchChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
+
   renderFilms() {
-    if (this.props.films.length === 0) {
-      return <Loader />;
-    } else {
-      return (
-        <div>
-          {/* <SearchBox search={"films"} onSearchChange={this.onSearchChange} /> */}
+    const { searchTerm } = this.state;
+    const filteredFilms = this.props.films.filter(film => {
+      return film.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
-          <div className="tc white flex justify-around films">
-            {this.props.films.map((film, i) => {
-              let id = getIndex(film.url);
+    return (
+      <div>
+        <SearchBox search={"films"} onSearchChange={this.onSearchChange} />
 
-              return (
-                <Link to={`/films/${id}`} key={id}>
-                  <Film key={film.name} id={id} name={film.name} />
-                </Link>
-              );
-            })}
-          </div>
+        <div className="tc white flex justify-around films">
+          {filteredFilms.map((film, i) => {
+            let id = getIndex(film.url);
+
+            return (
+              <Link to={`/films/${id}`} key={id}>
+                <Film key={film.name} id={id} name={film.name} />
+              </Link>
+            );
+          })}
         </div>
-      );
-    }
+      </div>
+    );
   }
 
   render() {

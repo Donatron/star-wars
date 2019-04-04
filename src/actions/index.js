@@ -18,10 +18,12 @@ export const CLEAR_STARSHIP = "CLEAR_STARSHIP";
 export const FETCH_SPECIES = "FETCH_SPECIES";
 export const FETCH_SPECIE = "FETCH_SPECIE";
 export const CLEAR_SPECIE = "CLEAR_SPECIE";
+export const DATA_LOADING = "DATA_LOADING";
 
 const ROOT_URL = "https://swapi.co/api";
 
 export const fetchPeople = () => async dispatch => {
+  dispatch(setDataLoading());
   const response = await axios.get(`${ROOT_URL}/people/`);
 
   // Assign results to array to allow further results to be concatenated later
@@ -58,6 +60,8 @@ export const fetchPeople = () => async dispatch => {
     type: FETCH_PEOPLE,
     payload: resultsArray
   });
+
+  dispatch(setDataLoading());
 };
 
 export const fetchPerson = id => async dispatch => {
@@ -76,6 +80,8 @@ export const clearSelectedPerson = () => {
 };
 
 export const fetchFilms = () => async dispatch => {
+  dispatch(setDataLoading());
+
   const response = await axios.get(`${ROOT_URL}/films/`);
 
   // Assign results to array to allow further results to be concatenated later
@@ -112,6 +118,8 @@ export const fetchFilms = () => async dispatch => {
     type: FETCH_FILMS,
     payload: resultsArray
   });
+
+  dispatch(setDataLoading());
 };
 
 export const fetchFilm = id => async dispatch => {
@@ -130,6 +138,8 @@ export const clearSelectedFilm = () => {
 };
 
 export const fetchPlanets = () => async dispatch => {
+  dispatch(setDataLoading());
+
   const response = await axios.get(`${ROOT_URL}/planets/`);
 
   // Assign results to array to allow further results to be concatenated later
@@ -166,6 +176,8 @@ export const fetchPlanets = () => async dispatch => {
     type: FETCH_PLANETS,
     payload: resultsArray
   });
+
+  dispatch(setDataLoading());
 };
 
 export const fetchPlanet = id => async dispatch => {
@@ -184,6 +196,8 @@ export const clearSelectedPlanet = () => {
 };
 
 export const fetchVehicles = () => async dispatch => {
+  dispatch(setDataLoading());
+
   const response = await axios.get(`${ROOT_URL}/vehicles/`);
 
   // Assign results to array to allow further results to be concatenated later
@@ -220,6 +234,8 @@ export const fetchVehicles = () => async dispatch => {
     type: FETCH_VEHICLES,
     payload: resultsArray
   });
+
+  dispatch(setDataLoading());
 };
 
 export const fetchVehicle = id => async dispatch => {
@@ -238,6 +254,8 @@ export const clearSelectedVehicle = () => {
 };
 
 export const fetchStarships = () => async dispatch => {
+  dispatch(setDataLoading());
+
   const response = await axios.get(`${ROOT_URL}/starships/`);
 
   // Assign results to array to allow further results to be concatenated later
@@ -274,6 +292,8 @@ export const fetchStarships = () => async dispatch => {
     type: FETCH_STARSHIPS,
     payload: resultsArray
   });
+
+  dispatch(setDataLoading());
 };
 
 export const fetchStarship = id => async dispatch => {
@@ -292,6 +312,8 @@ export const clearSelectedStarship = () => {
 };
 
 export const fetchSpecies = () => async dispatch => {
+  dispatch(setDataLoading());
+
   const response = await axios.get(`${ROOT_URL}/species/`);
 
   // Assign results to array to allow further results to be concatenated later
@@ -328,6 +350,7 @@ export const fetchSpecies = () => async dispatch => {
     type: FETCH_SPECIES,
     payload: resultsArray
   });
+  dispatch(setDataLoading());
 };
 
 export const fetchSpecie = id => async dispatch => {
@@ -342,5 +365,11 @@ export const fetchSpecie = id => async dispatch => {
 export const clearSelectedSpecie = () => {
   return {
     type: CLEAR_SPECIE
+  };
+};
+
+export const setDataLoading = () => {
+  return {
+    type: DATA_LOADING
   };
 };

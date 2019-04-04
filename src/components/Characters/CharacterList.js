@@ -7,10 +7,17 @@ import { getIndex } from "../../helpers";
 
 import Character from "./Character";
 import "../Characters/Character.css";
-import Loader from "../Loader/loader";
-// import SearchBox from "../Search/SearchBox";
+import SearchBox from "../Search/SearchBox";
 
 class CharacterList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
   componentDidMount() {
     if (this.props.people.length === 0) {
       this.props.fetchPeople();
@@ -18,38 +25,35 @@ class CharacterList extends Component {
   }
 
   onSearchChange = e => {
-    console.log(e.target.value);
+    this.setState({ searchTerm: e.target.value });
   };
 
   renderPeople() {
-    if (this.props.people.length === 0) {
-      return (
-        <div>
-          <Loader />
-        </div>
-      );
-    } else {
-      return (
+    const { searchTerm } = this.state;
+    const filteredPeople = this.props.people.filter(person => {
+      return person.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    return (
+      <div className="">
         <div className="">
-          <div className="">
-            {/* <SearchBox
-              search={"characters"}
-              onSearchChange={this.onSearchChange}
-            /> */}
-          </div>
-          <div className="tc white flex justify-around characters">
-            {this.props.people.map((person, i) => {
-              let id = getIndex(person.url);
-              return (
-                <Link to={`/characters/${id}`} key={id}>
-                  <Character key={person.name} id={id} name={person.name} />
-                </Link>
-              );
-            })}
-          </div>
+          <SearchBox
+            search={"characters"}
+            onSearchChange={this.onSearchChange}
+          />
         </div>
-      );
-    }
+        <div className="tc white flex justify-around characters">
+          {filteredPeople.map((person, i) => {
+            let id = getIndex(person.url);
+            return (
+              <Link to={`/characters/${id}`} key={id}>
+                <Character key={person.name} id={id} name={person.name} />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 
   render() {

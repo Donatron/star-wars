@@ -33,7 +33,7 @@
     "eslint-config-rallycoding": "^3.2.0",
     "gh-pages": "^2.0.1"
   },
-  "homepage": "https://github.com/Donatron/star-wars",
+  "homepage": "https://github.com/star-wars/",
   "browserslist": [
     ">0.2%",
     "not dead",

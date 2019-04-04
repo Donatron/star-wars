@@ -6,38 +6,50 @@ import { fetchVehicles } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Vehicle from "./Vehicle";
-import Loader from "../Loader/loader";
 import "./Vehicles.css";
-// import SearchBox from "../Search/SearchBox";
+import SearchBox from "../Search/SearchBox";
 
 class VehicleList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
   componentDidMount() {
     if (this.props.vehicles.length === 0) {
       this.props.fetchVehicles();
     }
   }
 
-  renderVehicles() {
-    if (this.props.vehicles.length === 0) {
-      return <Loader />;
-    } else {
-      return (
-        <div className="">
-          {/* <SearchBox search={"vehicles"} /> */}
-          <div className="tc white flex justify-around vehicles">
-            {this.props.vehicles.map((vehicle, i) => {
-              let id = getIndex(vehicle.url);
+  onSearchChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
 
-              return (
-                <Link to={`/vehicles/${id}`} key={id}>
-                  <Vehicle key={vehicle.name} id={id} name={vehicle.name} />
-                </Link>
-              );
-            })}
-          </div>
+  renderVehicles() {
+    const { searchTerm } = this.state;
+    const filteredVehicles = this.props.vehicles.filter(vehicle => {
+      return vehicle.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    return (
+      <div className="">
+        <SearchBox search={"vehicles"} onSearchChange={this.onSearchChange} />
+        <div className="tc white flex justify-around vehicles">
+          {filteredVehicles.map((vehicle, i) => {
+            let id = getIndex(vehicle.url);
+
+            return (
+              <Link to={`/vehicles/${id}`} key={id}>
+                <Vehicle key={vehicle.name} id={id} name={vehicle.name} />
+              </Link>
+            );
+          })}
         </div>
-      );
-    }
+      </div>
+    );
   }
 
   render() {
