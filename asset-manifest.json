@@ -1,17 +1,17 @@
 {
-  "main.css": "/star-wars/static/css/main.4e608218.chunk.css",
-  "main.js": "/star-wars/static/js/main.9f845253.chunk.js",
-  "main.js.map": "/star-wars/static/js/main.9f845253.chunk.js.map",
+  "main.css": "/star-wars/static/css/main.efe48a77.chunk.css",
+  "main.js": "/star-wars/static/js/main.e34d2c9d.chunk.js",
+  "main.js.map": "/star-wars/static/js/main.e34d2c9d.chunk.js.map",
   "runtime~main.js": "/star-wars/static/js/runtime~main.6cf174e3.js",
   "runtime~main.js.map": "/star-wars/static/js/runtime~main.6cf174e3.js.map",
   "static/css/2.24c8877a.chunk.css": "/star-wars/static/css/2.24c8877a.chunk.css",
-  "static/js/2.24c1a1a9.chunk.js": "/star-wars/static/js/2.24c1a1a9.chunk.js",
-  "static/js/2.24c1a1a9.chunk.js.map": "/star-wars/static/js/2.24c1a1a9.chunk.js.map",
+  "static/js/2.79a73ebd.chunk.js": "/star-wars/static/js/2.79a73ebd.chunk.js",
+  "static/js/2.79a73ebd.chunk.js.map": "/star-wars/static/js/2.79a73ebd.chunk.js.map",
   "index.html": "/star-wars/index.html",
-  "precache-manifest.e1ff0a268ceaa781d55590470f576f49.js": "/star-wars/precache-manifest.e1ff0a268ceaa781d55590470f576f49.js",
+  "precache-manifest.9375060a189e3d40a106a79664d02194.js": "/star-wars/precache-manifest.9375060a189e3d40a106a79664d02194.js",
   "service-worker.js": "/star-wars/service-worker.js",
   "static/css/2.24c8877a.chunk.css.map": "/star-wars/static/css/2.24c8877a.chunk.css.map",
-  "static/css/main.4e608218.chunk.css.map": "/star-wars/static/css/main.4e608218.chunk.css.map",
+  "static/css/main.efe48a77.chunk.css.map": "/star-wars/static/css/main.efe48a77.chunk.css.map",
   "static/media/1.jpg": "/star-wars/static/media/1.d8aa096d.jpg",
   "static/media/10.jpg": "/star-wars/static/media/10.becff7c9.jpg",
   "static/media/11.jpg": "/star-wars/static/media/11.9b49cf59.jpg",
@@ -101,6 +101,5 @@
   "static/media/88.jpg": "/star-wars/static/media/88.47cbba0b.jpg",
   "static/media/9.jpg": "/star-wars/static/media/9.daac3de8.jpg",
   "static/media/Logo.png": "/star-wars/static/media/Logo.d6b78313.png",
-  "static/media/loader.gif": "/star-wars/static/media/loader.d4214fd9.gif",
-  "static/media/obi-wan.gif": "/star-wars/static/media/obi-wan.233305ad.gif"
+  "static/media/loader.gif": "/star-wars/static/media/loader.d4214fd9.gif"
 }

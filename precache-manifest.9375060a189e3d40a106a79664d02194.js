@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "569a79d7a2160d4286d39700234deee4",
-    "url": "/star-wars/static/media/10.569a79d7.jpg"
+    "revision": "84fe4b5d7dbe5d5162398ad370e603b8",
+    "url": "/star-wars/static/media/8.84fe4b5d.jpg"
   },
   {
-    "revision": "70eab6b8b33c0218eca5",
-    "url": "/star-wars/static/css/main.4e608218.chunk.css"
+    "revision": "e810eed42a97a5b89145",
+    "url": "/star-wars/static/css/main.efe48a77.chunk.css"
   },
   {
     "revision": "aedf8bebf74d2f803586",
     "url": "/star-wars/static/js/runtime~main.6cf174e3.js"
   },
   {
-    "revision": "233305ad9d3a9dc718079d98da097477",
-    "url": "/star-wars/static/media/obi-wan.233305ad.gif"
+    "revision": "1f4414a5a99797ef990d6ce41efd8357",
+    "url": "/star-wars/static/media/9.1f4414a5.jpg"
   },
   {
-    "revision": "b22244479295bb571528",
-    "url": "/star-wars/static/js/2.24c1a1a9.chunk.js"
+    "revision": "64fbb773f1915bde422a",
+    "url": "/star-wars/static/js/2.79a73ebd.chunk.js"
   },
   {
     "revision": "d6b78313c675df6c527edf60bd11db29",
@@ -556,12 +556,12 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/76.702e7268.jpg"
   },
   {
-    "revision": "84fe4b5d7dbe5d5162398ad370e603b8",
-    "url": "/star-wars/static/media/8.84fe4b5d.jpg"
+    "revision": "e810eed42a97a5b89145",
+    "url": "/star-wars/static/js/main.e34d2c9d.chunk.js"
   },
   {
-    "revision": "70eab6b8b33c0218eca5",
-    "url": "/star-wars/static/js/main.9f845253.chunk.js"
+    "revision": "569a79d7a2160d4286d39700234deee4",
+    "url": "/star-wars/static/media/10.569a79d7.jpg"
   },
   {
     "revision": "68e641fc2d34af05eae47a724b0bee0e",
@@ -1108,15 +1108,11 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/8.f05cd155.jpg"
   },
   {
-    "revision": "1f4414a5a99797ef990d6ce41efd8357",
-    "url": "/star-wars/static/media/9.1f4414a5.jpg"
-  },
-  {
-    "revision": "b22244479295bb571528",
+    "revision": "64fbb773f1915bde422a",
     "url": "/star-wars/static/css/2.24c8877a.chunk.css"
   },
   {
-    "revision": "f7294abdb15de5e716dd44c63589ab8c",
+    "revision": "90c3478609f9a1a13191778dd7551573",
     "url": "/star-wars/index.html"
   }
 ];
