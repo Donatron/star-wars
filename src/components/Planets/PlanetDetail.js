@@ -37,9 +37,9 @@ class PlanetDetail extends Component {
         <div className="w-100 text-center">
           <h2>{name}</h2>
         </div>
-        <div className="w-100 pa3 ml5 flex justify-start planet-detail">
+        <div className="w-100 pa3 flex justify-center planet-detail">
           <Planet name={""} id={id} />
-          <div className="pa3 ml5 details">
+          <div className="pa3 ml3 details">
             <p>Rotation Period: {rotation_period} hours</p>
             <p>
               Orbital Period: {accounting.formatNumber(orbital_period)} days

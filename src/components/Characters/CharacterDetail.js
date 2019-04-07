@@ -148,10 +148,10 @@ class CharacterDetail extends Component {
           <div>
             <h2>{name ? name : ""}</h2>
           </div>
-          <div className="w-100 pa3 ml5 flex justify-start character-detail">
+          <div className="w-100 pa3 flex justify-center character-detail">
             <Character key={name} id={id} name={""} />
 
-            <div className="pa3 ml5 details">
+            <div className="pa3 ml3 details">
               {name
                 ? this.renderDetails(
                     height,
@@ -169,8 +169,9 @@ class CharacterDetail extends Component {
               <p>Species:</p>
               {speciesId ? this.renderSpecies(speciesId) : ""}
             </div>
-
-            <div className="center pa3 w-50 details">
+          </div>
+          <div className="w-100">
+            <div className="center pa3 w-80 details">
               <h3>Appears In Films</h3>
               {films ? this.renderFilms(films) : ""}
             </div>

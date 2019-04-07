@@ -41,7 +41,7 @@ class StarshipDetail extends Component {
         <div className="w-100 text-center">
           <h2>{name}</h2>
         </div>
-        <div className="w-100 pa3 ml5 flex justify-start starship-detail">
+        <div className="w-100 pa3 flex justify-center starship-detail">
           <Starship name="" id={id} key={id} />
           <div className="pa3 ml5 details">
             <p>Model: {model}</p>

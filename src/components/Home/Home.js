@@ -4,7 +4,7 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="tc home">
-      <section className="intro pa3 pa5-ns">
+      <section className="intro mv5">
         A long time ago, in a galaxy far, far away....
       </section>
       <div className="board">

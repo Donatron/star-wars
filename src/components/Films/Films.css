@@ -14,5 +14,35 @@
 }
 
 .film-detail-crawl {
+  position: absolute;
+  top: 100%;
   animation: scroll 100s linear !important;
+  animation-delay: 0s !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .film-detail-header {
+    height: 300px;
+  }
+
+  .film-detail-header article img {
+    width: 150px;
+    height: auto;
+    margin-left: -30px;
+  }
+
+  .film-detail-crawl {
+    font-size: 1.75rem !important;
+    animation: scroll 150s linear !important;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .film-detail-header article img {
+    width: 100px;
+  }
+
+  .film-detail-crawl {
+    font-size: 1rem !important;
+  }
 }

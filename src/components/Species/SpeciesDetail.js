@@ -38,7 +38,7 @@ class SpeciesDetail extends Component {
         <div className="center">
           <h2>{name}</h2>
         </div>
-        <div className="w-100 pa3 ml5 flex justify-start species-detail">
+        <div className="w-100 pa3 flex justify-center species-detail">
           <Species name="" id={id} key={id} />
           <div className="pa3 ml5 details">
             <p>Classification: {classification}</p>

@@ -34,7 +34,7 @@ class VehicleDetail extends Component {
     consumables
   ) {
     return (
-      <div className="w-100 pa3 ml5 flex justify-start vehicle-detail">
+      <div className="w-100 pa3 flex justify-center vehicle-detail">
         <Vehicle name="" id={id} key={id} />
         <div className="pa3 ml5 details">
           <p>Model: {model}</p>
