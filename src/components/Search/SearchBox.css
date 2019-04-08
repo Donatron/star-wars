@@ -1,4 +1,5 @@
 input {
-  background-color: rgb(229,177, 58);
+  background-color: rgb(229, 177, 58);
   text-transform: capitalize;
+  outline: none;
 }
