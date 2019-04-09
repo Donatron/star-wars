@@ -109,7 +109,7 @@ class App extends Component {
                 <Route path="/starships" component={StarshipList} />
                 <Route path="/species/:id" component={SpeciesDetail} />
                 <Route path="/species" component={SpeciesList} />
-                <Route path="/" exact component={Home} />
+                <Route path="/" component={Home} />
               </Switch>
               <Footer />
             </div>
