@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/8.84fe4b5d.jpg"
   },
   {
-    "revision": "9877b30b35f8465be47a",
-    "url": "/star-wars/static/css/main.d2964e08.chunk.css"
+    "revision": "1e3d85ee4dc56b7abdbd",
+    "url": "/star-wars/static/css/main.b5446ff7.chunk.css"
   },
   {
     "revision": "aedf8bebf74d2f803586",
@@ -16,12 +16,16 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/9.1f4414a5.jpg"
   },
   {
-    "revision": "64fbb773f1915bde422a",
-    "url": "/star-wars/static/js/2.79a73ebd.chunk.js"
+    "revision": "58e4e875d987aacd0413",
+    "url": "/star-wars/static/js/2.a59fbb00.chunk.js"
   },
   {
     "revision": "d6b78313c675df6c527edf60bd11db29",
     "url": "/star-wars/static/media/Logo.d6b78313.png"
+  },
+  {
+    "revision": "40a1b0ab97d94ee99c7f64de66b43eb3",
+    "url": "/star-wars/static/media/Star_Wars_Theme_Song.40a1b0ab.m4a"
   },
   {
     "revision": "c5857f7d16a6c064bf27143efa18c87b",
@@ -556,8 +560,8 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/76.702e7268.jpg"
   },
   {
-    "revision": "9877b30b35f8465be47a",
-    "url": "/star-wars/static/js/main.057c7979.chunk.js"
+    "revision": "1e3d85ee4dc56b7abdbd",
+    "url": "/star-wars/static/js/main.a44e1a20.chunk.js"
   },
   {
     "revision": "569a79d7a2160d4286d39700234deee4",
@@ -1108,11 +1112,11 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/8.f05cd155.jpg"
   },
   {
-    "revision": "64fbb773f1915bde422a",
+    "revision": "58e4e875d987aacd0413",
     "url": "/star-wars/static/css/2.24c8877a.chunk.css"
   },
   {
-    "revision": "377e23a5cacfa54274a87d823d655620",
+    "revision": "e0b769ba0d4a4dcb24eb8cea7c70d178",
     "url": "/star-wars/index.html"
   }
 ];
