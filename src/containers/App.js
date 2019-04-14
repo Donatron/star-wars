@@ -87,7 +87,8 @@ class App extends Component {
     }
 
     if (loading) {
-      return <Loader />;
+      console.log("loading");
+      return <Loader loading={true} />;
     } else {
       return (
         <div className="App tc">
