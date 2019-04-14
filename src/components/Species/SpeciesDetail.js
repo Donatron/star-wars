@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { fetchSpecie, clearSelectedSpecie } from "../../actions";
 import { getIndex } from "../../helpers";
 
-import Loader from "../Loader/loader";
 import Species from "./Species";
 import Planet from "../Planets/Planet";
 import Character from "../Characters/Character";
@@ -121,7 +120,7 @@ class SpeciesDetail extends Component {
     } = specie;
 
     if (!name) {
-      return <Loader />;
+      return <div />;
     } else {
       const homeWorldId = getIndex(specie.homeworld);
 

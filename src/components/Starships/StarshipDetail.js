@@ -5,7 +5,6 @@ import { fetchStarship, clearSelectedStarship } from "../../actions";
 import { getIndex } from "../../helpers";
 import accounting from "accounting";
 
-import Loader from "../Loader/loader";
 import Starship from "./Starship";
 import Character from "../Characters/Character";
 import Film from "../Films/Film";
@@ -133,7 +132,7 @@ class StarshipDetail extends Component {
     } = starship;
 
     if (!name) {
-      return <Loader />;
+      return <div />;
     } else {
       return (
         <div>

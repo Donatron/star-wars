@@ -5,7 +5,6 @@ import { fetchVehicle, clearSelectedVehicle } from "../../actions";
 import { getIndex } from "../../helpers";
 import accounting from "accounting";
 
-import Loader from "../Loader/loader";
 import Vehicle from "./Vehicle";
 import Film from "../Films/Film";
 import Character from "../Characters/Character";
@@ -122,7 +121,7 @@ class VehicleDetail extends Component {
     } = vehicle;
 
     if (!name) {
-      return <Loader />;
+      return <div />;
     } else {
       return (
         <div>

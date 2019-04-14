@@ -104,6 +104,7 @@ class Loader extends Component {
   componentWillUnmount() {
     const loader = document.querySelector("#loader canvas");
     loader.parentNode.removeChild(loader);
+
     this.app.stop();
   }
 

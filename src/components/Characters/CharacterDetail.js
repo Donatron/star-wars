@@ -5,7 +5,6 @@ import { fetchPerson, clearSelectedPerson } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Character from "./Character";
-import Loader from "../Loader/loader";
 import Film from "../Films/Film";
 import Vehicle from "../Vehicles/Vehicle";
 import Starship from "../Starships/Starship";
@@ -137,7 +136,7 @@ class CharacterDetail extends Component {
     } = person;
 
     if (!name) {
-      return <Loader />;
+      return <div />;
     } else {
       const homeWorldId = getIndex(`"${homeworld}"`);
       console.log(`Species: ${species}`);

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchFilm, clearSelectedFilm } from "../../actions";
+import { fetchFilm, clearSelectedFilm, setDataLoading } from "../../actions";
 import { getIndex } from "../../helpers";
 import romanNumerals from "roman-numerals";
 
-import Loader from "../Loader/loader";
 import Film from "./Film";
 import Character from "../Characters/Character";
 import Planet from "../Planets/Planet";
@@ -16,7 +15,9 @@ import Vehicle from "../Vehicles/Vehicle";
 class FilmDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.props.fetchFilm(id);
+    if (!this.props.film.title) {
+      this.props.fetchFilm(id);
+    }
   }
 
   componentWillUnmount() {
@@ -64,9 +65,9 @@ class FilmDetail extends Component {
       <div className="board">
         <div className="content  film-detail-crawl">
           <div className="w-80 pa5 ml5 subtitle">
-            {crawlArray.map(el => {
+            {crawlArray.map((el, i) => {
               return (
-                <div>
+                <div key={i}>
                   <p>{el}</p>
                   <br />
                 </div>
@@ -170,7 +171,7 @@ class FilmDetail extends Component {
     } = film;
 
     if (!title) {
-      return <Loader />;
+      return <div />;
     } else {
       const romanId = romanNumerals.toRoman(episode_id);
 
@@ -218,11 +219,11 @@ class FilmDetail extends Component {
   }
 }
 
-function mapStateToProps({ selectedFilm }, ownProps) {
-  return { film: selectedFilm };
+function mapStateToProps({ selectedFilm, loading }, ownProps) {
+  return { film: selectedFilm, loading };
 }
 
 export default connect(
   mapStateToProps,
-  { fetchFilm, clearSelectedFilm }
+  { fetchFilm, clearSelectedFilm, setDataLoading }
 )(FilmDetail);

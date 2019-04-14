@@ -5,7 +5,6 @@ import { fetchPlanet, clearSelectedPlanet } from "../../actions";
 import { getIndex } from "../../helpers";
 import accounting from "accounting";
 
-import Loader from "../Loader/loader";
 import Planet from "./Planet";
 import Character from "../Characters/Character";
 import Film from "../Films/Film";
@@ -113,7 +112,7 @@ class PlanetDetail extends Component {
     } = planet;
 
     if (!name) {
-      return <Loader />;
+      return <div />;
     } else {
       return (
         <div>

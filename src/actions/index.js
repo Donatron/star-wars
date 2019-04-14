@@ -127,7 +127,8 @@ export const fetchFilm = id => async dispatch => {
 
   dispatch({
     type: FETCH_FILM,
-    payload: request
+    payload: request,
+    title: console.log("title")
   });
 };
 
