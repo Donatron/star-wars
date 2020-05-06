@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/8.84fe4b5d.jpg"
   },
   {
-    "revision": "dbc79db4e64851e7ace7",
-    "url": "/star-wars/static/css/main.9ea50b84.chunk.css"
+    "revision": "5e1e5838fb7a3ac458ae",
+    "url": "/star-wars/static/css/main.d44ea7be.chunk.css"
   },
   {
     "revision": "aedf8bebf74d2f803586",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/9.1f4414a5.jpg"
   },
   {
-    "revision": "8ee360ee90659a8d250b",
+    "revision": "42919353f205a44899ec",
     "url": "/star-wars/static/js/2.2bd31c0f.chunk.js"
   },
   {
@@ -556,8 +556,8 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/76.702e7268.jpg"
   },
   {
-    "revision": "dbc79db4e64851e7ace7",
-    "url": "/star-wars/static/js/main.83288aa4.chunk.js"
+    "revision": "5e1e5838fb7a3ac458ae",
+    "url": "/star-wars/static/js/main.34e70961.chunk.js"
   },
   {
     "revision": "569a79d7a2160d4286d39700234deee4",
@@ -1108,11 +1108,11 @@ self.__precacheManifest = [
     "url": "/star-wars/static/media/8.f05cd155.jpg"
   },
   {
-    "revision": "8ee360ee90659a8d250b",
-    "url": "/star-wars/static/css/2.24c8877a.chunk.css"
+    "revision": "42919353f205a44899ec",
+    "url": "/star-wars/static/css/2.05905545.chunk.css"
   },
   {
-    "revision": "37031710ac451c9dee894a83ca257da4",
+    "revision": "702f0995abb08226ddd3fe47defb1d8a",
     "url": "/star-wars/index.html"
   }
 ];
