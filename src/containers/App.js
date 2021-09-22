@@ -28,21 +28,21 @@ const particlesOptions = {
       value: 100,
       density: {
         enable: true,
-        value_area: 200
-      }
+        value_area: 200,
+      },
     },
     connectParticles: false,
     line_linked: {
-      enable: false
+      enable: false,
     },
     size: {
       value: 2,
-      random: true
+      random: true,
     },
     move: {
-      speed: 1
-    }
-  }
+      speed: 1,
+    },
+  },
 };
 
 class App extends Component {
@@ -50,11 +50,11 @@ class App extends Component {
     super();
     this.state = {
       searchBox: false,
-      searchField: ""
+      searchField: "",
     };
   }
 
-  onRouteChange = route => {
+  onRouteChange = (route) => {
     if (route === "home") {
       this.setState({ searchBox: false });
     } else {
@@ -63,12 +63,12 @@ class App extends Component {
     this.setState({ route: route });
   };
 
-  onSearchChange = event => {
+  onSearchChange = (event) => {
     this.setState({ searchField: event.target.value });
-    // const filteredResults = this.state.people.filter(results => {
-    //   return results.name.toLowerCase().includes(this.state.searchField.toLowerCase());
-    // })
-    // console.log(filteredResults);
+    const filteredResults = this.state.people.filter(results => {
+      return results.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+    })
+    console.log(filteredResults);
   };
 
   render() {
@@ -94,7 +94,7 @@ class App extends Component {
           <Particles className="particles" params={particlesOptions} />
           <BrowserRouter>
             <div>
-              <Navigation onRouteChange={this.onRouteChange} />
+              {<Navigation onRouteChange={this.onRouteChange} />}
               {searchBoxComponent}
               <Switch>
                 <Route path="/characters/:id" component={CharacterDetail} />
@@ -120,9 +120,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    loading: state.loading
+    loading: state.loading,
   };
 };
 

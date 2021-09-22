@@ -3,3 +3,7 @@ input {
   text-transform: capitalize;
   outline: none;
 }
+
+input::placeholder {
+  color: black !important;
+}

@@ -20,9 +20,9 @@ export const FETCH_SPECIE = "FETCH_SPECIE";
 export const CLEAR_SPECIE = "CLEAR_SPECIE";
 export const DATA_LOADING = "DATA_LOADING";
 
-const ROOT_URL = "https://swapi.co/api";
+const ROOT_URL = "https://www.swapi.tech/api";
 
-export const fetchPeople = () => async dispatch => {
+export const fetchPeople = () => async (dispatch) => {
   dispatch(setDataLoading());
   const response = await axios.get(`${ROOT_URL}/people/`);
 
@@ -58,28 +58,28 @@ export const fetchPeople = () => async dispatch => {
 
   dispatch({
     type: FETCH_PEOPLE,
-    payload: resultsArray
+    payload: resultsArray,
   });
 
   dispatch(setDataLoading());
 };
 
-export const fetchPerson = id => async dispatch => {
+export const fetchPerson = (id) => async (dispatch) => {
   const request = await axios.get(`${ROOT_URL}/people/${id}`);
 
   dispatch({
     type: FETCH_PERSON,
-    payload: request
+    payload: request,
   });
 };
 
 export const clearSelectedPerson = () => {
   return {
-    type: CLEAR_PERSON
+    type: CLEAR_PERSON,
   };
 };
 
-export const fetchFilms = () => async dispatch => {
+export const fetchFilms = () => async (dispatch) => {
   dispatch(setDataLoading());
 
   const response = await axios.get(`${ROOT_URL}/films/`);
@@ -116,28 +116,28 @@ export const fetchFilms = () => async dispatch => {
 
   dispatch({
     type: FETCH_FILMS,
-    payload: resultsArray
+    payload: resultsArray,
   });
 
   dispatch(setDataLoading());
 };
 
-export const fetchFilm = id => async dispatch => {
+export const fetchFilm = (id) => async (dispatch) => {
   const request = await axios.get(`${ROOT_URL}/films/${id}`);
 
   dispatch({
     type: FETCH_FILM,
-    payload: request
+    payload: request,
   });
 };
 
 export const clearSelectedFilm = () => {
   return {
-    type: CLEAR_FILM
+    type: CLEAR_FILM,
   };
 };
 
-export const fetchPlanets = () => async dispatch => {
+export const fetchPlanets = () => async (dispatch) => {
   dispatch(setDataLoading());
 
   const response = await axios.get(`${ROOT_URL}/planets/`);
@@ -174,28 +174,28 @@ export const fetchPlanets = () => async dispatch => {
 
   dispatch({
     type: FETCH_PLANETS,
-    payload: resultsArray
+    payload: resultsArray,
   });
 
   dispatch(setDataLoading());
 };
 
-export const fetchPlanet = id => async dispatch => {
+export const fetchPlanet = (id) => async (dispatch) => {
   const request = await axios.get(`${ROOT_URL}/planets/${id}`);
 
   dispatch({
     type: FETCH_PLANET,
-    payload: request
+    payload: request,
   });
 };
 
 export const clearSelectedPlanet = () => {
   return {
-    type: CLEAR_PLANET
+    type: CLEAR_PLANET,
   };
 };
 
-export const fetchVehicles = () => async dispatch => {
+export const fetchVehicles = () => async (dispatch) => {
   dispatch(setDataLoading());
 
   const response = await axios.get(`${ROOT_URL}/vehicles/`);
@@ -232,28 +232,28 @@ export const fetchVehicles = () => async dispatch => {
 
   dispatch({
     type: FETCH_VEHICLES,
-    payload: resultsArray
+    payload: resultsArray,
   });
 
   dispatch(setDataLoading());
 };
 
-export const fetchVehicle = id => async dispatch => {
+export const fetchVehicle = (id) => async (dispatch) => {
   let request = await axios.get(`${ROOT_URL}/vehicles/${id}`);
 
   dispatch({
     type: FETCH_VEHICLE,
-    payload: request
+    payload: request,
   });
 };
 
 export const clearSelectedVehicle = () => {
   return {
-    type: CLEAR_VEHICLE
+    type: CLEAR_VEHICLE,
   };
 };
 
-export const fetchStarships = () => async dispatch => {
+export const fetchStarships = () => async (dispatch) => {
   dispatch(setDataLoading());
 
   const response = await axios.get(`${ROOT_URL}/starships/`);
@@ -290,28 +290,28 @@ export const fetchStarships = () => async dispatch => {
 
   dispatch({
     type: FETCH_STARSHIPS,
-    payload: resultsArray
+    payload: resultsArray,
   });
 
   dispatch(setDataLoading());
 };
 
-export const fetchStarship = id => async dispatch => {
+export const fetchStarship = (id) => async (dispatch) => {
   let request = await axios.get(`${ROOT_URL}/starships/${id}`);
 
   dispatch({
     type: FETCH_STARSHIP,
-    payload: request
+    payload: request,
   });
 };
 
 export const clearSelectedStarship = () => {
   return {
-    type: CLEAR_STARSHIP
+    type: CLEAR_STARSHIP,
   };
 };
 
-export const fetchSpecies = () => async dispatch => {
+export const fetchSpecies = () => async (dispatch) => {
   dispatch(setDataLoading());
 
   const response = await axios.get(`${ROOT_URL}/species/`);
@@ -348,28 +348,28 @@ export const fetchSpecies = () => async dispatch => {
 
   dispatch({
     type: FETCH_SPECIES,
-    payload: resultsArray
+    payload: resultsArray,
   });
   dispatch(setDataLoading());
 };
 
-export const fetchSpecie = id => async dispatch => {
+export const fetchSpecie = (id) => async (dispatch) => {
   let request = await axios.get(`${ROOT_URL}/species/${id}`);
 
   dispatch({
     type: FETCH_SPECIE,
-    payload: request
+    payload: request,
   });
 };
 
 export const clearSelectedSpecie = () => {
   return {
-    type: CLEAR_SPECIE
+    type: CLEAR_SPECIE,
   };
 };
 
 export const setDataLoading = () => {
   return {
-    type: DATA_LOADING
+    type: DATA_LOADING,
   };
 };

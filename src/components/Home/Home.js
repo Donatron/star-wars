@@ -15,30 +15,28 @@ class Home extends Component {
         </section>
         <div className="board">
           <div className="content">
-            <p id="title">Episode I</p>
-            <p className="subtitle">THE FANDOM MENACE</p>
+            <p id="title">Episode X</p>
+            <p className="subtitle">THE API STRIKES BACK</p>
             <br />
             <p>
-              Confusion has gripped the film-going public as the ever-growing
-              Star Wars universe continues to release new, and spin-off, movies.
+              Devastation has beset the developer of this site as, after months
+              of toiling over designing and developing a service to bring as
+              much information as possible to the average Star Wars fan, the
+              creators of the Swapi API used to power this site have taken the
+              service down.
+            </p>{" "}
+            <br />
+            <p>I know, gutted right?...</p> <br />
+            <p>
+              What was once a showpiece of my portfolio is now little more than
+              this opening scroll.
             </p>{" "}
             <br />
             <p>
-              With each new addition to the franchise come new characters,
-              planets, species and starships.
-            </p>{" "}
-            <br />
-            <p>
-              Struggling to keep track of all there is to know the fans look for
-              a hero. A one-stop resource. Their go-to place for all they need
-              to know about Star Wars.
-            </p>{" "}
-            <br />
-            <p>Among all the chaos there has emerged A New Hope.......</p>
+              I thank you, though, for dropping by. If you'd like to check out
+              some of my other work, please click on the link below.
+            </p>
             <b />
-            <p>This website.</p>
-            <br />
-            <p>Click the links above for all you need to know.</p>
           </div>
         </div>
       </div>
