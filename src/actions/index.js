@@ -20,7 +20,7 @@ export const FETCH_SPECIE = "FETCH_SPECIE";
 export const CLEAR_SPECIE = "CLEAR_SPECIE";
 export const DATA_LOADING = "DATA_LOADING";
 
-const ROOT_URL = "https://www.swapi.tech/api";
+const ROOT_URL = "https://swapi.dev/api";
 
 export const fetchPeople = () => async (dispatch) => {
   dispatch(setDataLoading());
@@ -125,6 +125,8 @@ export const fetchFilms = () => async (dispatch) => {
 export const fetchFilm = (id) => async (dispatch) => {
   const request = await axios.get(`${ROOT_URL}/films/${id}`);
 
+  console.log(`${ROOT_URL}/films/${id}`);
+
   dispatch({
     type: FETCH_FILM,
     payload: request,
@@ -198,7 +200,7 @@ export const clearSelectedPlanet = () => {
 export const fetchVehicles = () => async (dispatch) => {
   dispatch(setDataLoading());
 
-  const response = await axios.get(`${ROOT_URL}/vehicles/`);
+  const response = await axios.get(`${ROOT_URL}/vehicles`);
 
   // Assign results to array to allow further results to be concatenated later
   let resultsArray = response.data.results;
