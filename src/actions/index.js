@@ -125,8 +125,6 @@ export const fetchFilms = () => async (dispatch) => {
 export const fetchFilm = (id) => async (dispatch) => {
   const request = await axios.get(`${ROOT_URL}/films/${id}`);
 
-  console.log(`${ROOT_URL}/films/${id}`);
-
   dispatch({
     type: FETCH_FILM,
     payload: request,
