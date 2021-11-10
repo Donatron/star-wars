@@ -11,6 +11,7 @@ import Planet from "../Planets/Planet";
 import Species from "../Species/Species";
 import Starship from "../Starships/Starship";
 import Vehicle from "../Vehicles/Vehicle";
+import Error from '../Error/Error';
 
 class FilmDetail extends Component {
   componentDidMount() {
@@ -156,7 +157,7 @@ class FilmDetail extends Component {
   }
 
   renderFilm() {
-    const { film } = this.props;
+    const { film, error } = this.props;
     const { id } = this.props.match.params;
     const {
       title,
@@ -170,7 +171,11 @@ class FilmDetail extends Component {
       vehicles
     } = film;
 
-    if (!title) {
+    console.log(error);
+
+    if (error.message) {
+      return <Error message={error.message} redirect="films" />
+    } else if (!title) {
       return <div />;
     } else {
       const romanId = romanNumerals.toRoman(episode_id);
@@ -219,8 +224,8 @@ class FilmDetail extends Component {
   }
 }
 
-function mapStateToProps({ selectedFilm, loading }, ownProps) {
-  return { film: selectedFilm, loading };
+function mapStateToProps({ selectedFilm, loading, error }, ownProps) {
+  return { film: selectedFilm, loading, error };
 }
 
 export default connect(

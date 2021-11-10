@@ -19,6 +19,8 @@ export const FETCH_SPECIES = "FETCH_SPECIES";
 export const FETCH_SPECIE = "FETCH_SPECIE";
 export const CLEAR_SPECIE = "CLEAR_SPECIE";
 export const DATA_LOADING = "DATA_LOADING";
+export const SET_ERROR = "SET_ERROR";
+export const CLEAR_ERROR = "CLEAR_ERROR";
 
 const ROOT_URL = "https://swapi.dev/api";
 
@@ -123,12 +125,20 @@ export const fetchFilms = () => async (dispatch) => {
 };
 
 export const fetchFilm = (id) => async (dispatch) => {
-  const request = await axios.get(`${ROOT_URL}/films/${id}`);
 
-  dispatch({
-    type: FETCH_FILM,
-    payload: request,
-  });
+  let request;
+
+  try {
+    request = await axios.get(`${ROOT_URL}/films/${id}`);
+
+    dispatch({
+      type: FETCH_FILM,
+      payload: request,
+    });
+
+  } catch (error) {
+    dispatch(setError("Sorry, having trouble finding that film"));
+  }
 };
 
 export const clearSelectedFilm = () => {
@@ -373,3 +383,16 @@ export const setDataLoading = () => {
     type: DATA_LOADING,
   };
 };
+
+export const setError = (message) => {
+  return {
+    type: SET_ERROR,
+    payload: message
+  }
+}
+
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
+  }
+}

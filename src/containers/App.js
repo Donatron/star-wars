@@ -68,7 +68,6 @@ class App extends Component {
     const filteredResults = this.state.people.filter(results => {
       return results.name.toLowerCase().includes(this.state.searchField.toLowerCase());
     })
-    console.log(filteredResults);
   };
 
   render() {
