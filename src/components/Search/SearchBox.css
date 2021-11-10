@@ -2,8 +2,25 @@ input {
   background-color: rgb(229, 177, 58);
   text-transform: capitalize;
   outline: none;
+  border: solid 1px rgb(229, 177, 58);
 }
 
 input::placeholder {
   color: black !important;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+}
+
+.search-box_container {
+  display: flex;
+}
+
+.search-box_container .fa-search {
+  background-color: rgb(229, 177, 58);
+  color: rgba(0,0,0,0.7);
+  font-size: 1.75rem;
+  padding: 18px;
 }

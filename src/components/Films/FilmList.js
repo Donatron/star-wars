@@ -31,7 +31,6 @@ class FilmList extends Component {
     return (
       <div>
         <SearchBox search={"films"} onSearchChange={this.onSearchChange} />
-
         <div className="tc white flex justify-around films">
           {filteredFilms.map((film, i) => {
             let id = getIndex(film.url);

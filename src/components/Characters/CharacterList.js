@@ -36,12 +36,7 @@ class CharacterList extends Component {
 
     return (
       <div className="">
-        <div className="">
-          <SearchBox
-            search={"characters"}
-            onSearchChange={this.onSearchChange}
-          />
-        </div>
+        <SearchBox search={"characters"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around characters">
           {filteredPeople.map((person, i) => {
             let id = getIndex(person.url);
