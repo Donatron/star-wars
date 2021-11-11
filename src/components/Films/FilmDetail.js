@@ -173,8 +173,8 @@ class FilmDetail extends Component {
 
     console.log(error);
 
-    if (error.message) {
-      return <Error message={error.message} redirect="films" />
+    if (error.film.message) {
+      return <Error message={error.film.message} redirect="films" />
     } else if (!title) {
       return <div />;
     } else {

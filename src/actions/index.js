@@ -26,53 +26,66 @@ const ROOT_URL = "https://swapi.dev/api";
 
 export const fetchPeople = () => async (dispatch) => {
   dispatch(setDataLoading());
-  const response = await axios.get(`${ROOT_URL}/people/`);
 
-  // Assign results to array to allow further results to be concatenated later
-  let resultsArray = response.data.results;
+  let response;
 
-  // Assign "next" api page to variable to allow next api call
-  let next = await response.data.next;
+  try {
+    response = await axios.get(`${ROOT_URL}/people/`);
 
-  // Create index to allow while loop
-  let counter = 0;
+    // Assign results to array to allow further results to be concatenated later
+    let resultsArray = response.data.results;
 
-  if (next !== null) {
-    while (counter < 1) {
-      // Call next api page
-      const request = await axios.get(next);
+    // Assign "next" api page to variable to allow next api call
+    let next = await response.data.next;
 
-      // Assign results to variable and iterate over it, adding results to original resultsArray
-      let results = await request.data.results;
-      next = await request.data.next;
+    // Create index to allow while loop
+    let counter = 0;
 
-      // Iterate over fetched data and add to resultsArray
-      for (let result of results) {
-        resultsArray.push(result);
-      }
+    if (next !== null) {
+      while (counter < 1) {
+        // Call next api page
+        const request = await axios.get(next);
 
-      // If next value is null, increment counter to end while loop
-      if (next === null) {
-        counter++;
+        // Assign results to variable and iterate over it, adding results to original resultsArray
+        let results = await request.data.results;
+        next = await request.data.next;
+
+        // Iterate over fetched data and add to resultsArray
+        for (let result of results) {
+          resultsArray.push(result);
+        }
+
+        // If next value is null, increment counter to end while loop
+        if (next === null) {
+          counter++;
+        }
       }
     }
-  }
 
-  dispatch({
-    type: FETCH_PEOPLE,
-    payload: resultsArray,
-  });
+    dispatch({
+      type: FETCH_PEOPLE,
+      payload: resultsArray,
+    });
+  } catch (error) {
+    dispatch(setError('people', 'Sorry, having trouble loading characters at the moment.'));
+  }
 
   dispatch(setDataLoading());
 };
 
 export const fetchPerson = (id) => async (dispatch) => {
-  const request = await axios.get(`${ROOT_URL}/people/${id}`);
+  let request;
 
-  dispatch({
-    type: FETCH_PERSON,
-    payload: request,
-  });
+  try {
+    request = await axios.get(`${ROOT_URL}/people/${id}`);
+
+    dispatch({
+      type: FETCH_PERSON,
+      payload: request,
+    });
+  } catch (error) {
+    dispatch(setError('people', 'Sorry, having trouble loading that character at the moment.'))
+  }
 };
 
 export const clearSelectedPerson = () => {
@@ -84,42 +97,49 @@ export const clearSelectedPerson = () => {
 export const fetchFilms = () => async (dispatch) => {
   dispatch(setDataLoading());
 
-  const response = await axios.get(`${ROOT_URL}/films/`);
+  let response;
 
-  // Assign results to array to allow further results to be concatenated later
-  let resultsArray = response.data.results;
+  try {
+    response = await axios.get(`${ROOT_URL}/films/`);
 
-  // Assign "next" api page to variable to allow next api call
-  let next = await response.data.next;
+    // Assign results to array to allow further results to be concatenated later
+    let resultsArray = response.data.results;
 
-  // Create index to allow while loop
-  let counter = 0;
+    // Assign "next" api page to variable to allow next api call
+    let next = await response.data.next;
 
-  if (next !== null) {
-    while (counter < 1) {
-      // Call next api page
-      const request = await axios.get(next);
+    // Create index to allow while loop
+    let counter = 0;
 
-      // Assign results to variable and iterate over it, adding results to original resultsArray
-      let results = await request.data.results;
-      next = await request.data.next;
+    if (next !== null) {
+      while (counter < 1) {
+        // Call next api page
+        const request = await axios.get(next);
 
-      // Iterate over fetched data and add to resultsArray
-      for (let result of results) {
-        resultsArray.push(result);
-      }
+        // Assign results to variable and iterate over it, adding results to original resultsArray
+        let results = await request.data.results;
+        next = await request.data.next;
 
-      // If next value is null, increment counter to end while loop
-      if (next === null) {
-        counter++;
+        // Iterate over fetched data and add to resultsArray
+        for (let result of results) {
+          resultsArray.push(result);
+        }
+
+        // If next value is null, increment counter to end while loop
+        if (next === null) {
+          counter++;
+        }
       }
     }
-  }
 
-  dispatch({
-    type: FETCH_FILMS,
-    payload: resultsArray,
-  });
+    dispatch({
+      type: FETCH_FILMS,
+      payload: resultsArray,
+    });
+
+  } catch (error) {
+    dispatch(setError('film', 'Sorry, having trouble loading films at the moment'));
+  }
 
   dispatch(setDataLoading());
 };
@@ -137,7 +157,7 @@ export const fetchFilm = (id) => async (dispatch) => {
     });
 
   } catch (error) {
-    dispatch(setError("Sorry, having trouble finding that film"));
+    dispatch(setError("film", "Sorry, having trouble finding that film at the moment"));
   }
 };
 
@@ -384,10 +404,13 @@ export const setDataLoading = () => {
   };
 };
 
-export const setError = (message) => {
+export const setError = (type, message) => {
   return {
     type: SET_ERROR,
-    payload: message
+    payload: {
+      type,
+      message
+    }
   }
 }
 

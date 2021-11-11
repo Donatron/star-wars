@@ -6,7 +6,6 @@ import Home from "../components/Home/Home";
 
 import "./App.css";
 import Navigation from "../components/Navigation/Navigation";
-import SearchBox from "../components/Search/SearchBox";
 import CharacterList from "../components/Characters/CharacterList";
 import CharacterDetail from "../components/Characters/CharacterDetail";
 import FilmList from "../components/Films/FilmList";
@@ -63,27 +62,10 @@ class App extends Component {
     this.setState({ route: route });
   };
 
-  onSearchChange = (event) => {
-    this.setState({ searchField: event.target.value });
-    const filteredResults = this.state.people.filter(results => {
-      return results.name.toLowerCase().includes(this.state.searchField.toLowerCase());
-    })
-  };
-
   render() {
     const { loading } = this.props;
-
-    const viewSearchBox = this.state.searchBox;
     let searchBoxComponent;
 
-    if (viewSearchBox) {
-      searchBoxComponent = (
-        <SearchBox
-          search={this.state.route}
-          searchChange={this.onSearchChange}
-        />
-      );
-    }
 
     if (loading) {
       return <Loader />;

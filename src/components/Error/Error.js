@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
-const Error = ({ message, redirect }) => {
+import { clearError } from '../../actions';
+
+const Error = ({ message, redirect, clearError }) => {
+  const handleRedirect = () => {
+    clearError();
+  }
   return (
     <div className="error">
       <h3><i>{message}</i></h3>
-      <Link to="/films">{`Return to ${redirect} list`}</Link>
+      <Link to={`/${redirect}`} onClick={handleRedirect}>{`Return to ${redirect} list`}</Link>
     </div>
   )
 }
 
-export default Error;
+export default connect(null, { clearError })(Error);

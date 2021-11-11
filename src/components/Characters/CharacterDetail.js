@@ -10,6 +10,7 @@ import Vehicle from "../Vehicles/Vehicle";
 import Starship from "../Starships/Starship";
 import Planet from "../Planets/Planet";
 import Species from "../Species/Species";
+import Error from "../Error/Error";
 
 class CharacterDetail extends Component {
   componentDidMount() {
@@ -117,7 +118,7 @@ class CharacterDetail extends Component {
   }
 
   render() {
-    const { person } = this.props;
+    const { person, error } = this.props;
     const { id } = this.props.match.params;
     const {
       name,
@@ -135,7 +136,9 @@ class CharacterDetail extends Component {
       starships
     } = person;
 
-    if (!name) {
+    if (error.people.message) {
+      return <Error message={error.people.message} redirect="characters" />
+    } else if (!name) {
       return <div />;
     } else {
       const homeWorldId = getIndex(`"${homeworld}"`);
@@ -153,14 +156,14 @@ class CharacterDetail extends Component {
             <div className="pa3 ml3 details">
               {name
                 ? this.renderDetails(
-                    height,
-                    mass,
-                    hair_color,
-                    skin_color,
-                    eye_color,
-                    birth_year,
-                    gender
-                  )
+                  height,
+                  mass,
+                  hair_color,
+                  skin_color,
+                  eye_color,
+                  birth_year,
+                  gender
+                )
                 : ""}
               <p>Home World:</p>
               {homeWorldId ? this.renderHomeWorld(homeWorldId) : ""}
@@ -193,8 +196,8 @@ class CharacterDetail extends Component {
   }
 }
 
-function mapStateToProps({ selectedPerson }, ownProps) {
-  return { person: selectedPerson };
+function mapStateToProps({ selectedPerson, error }, ownProps) {
+  return { person: selectedPerson, error };
 }
 
 export default connect(
