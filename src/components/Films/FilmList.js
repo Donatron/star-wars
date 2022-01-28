@@ -8,6 +8,7 @@ import { getIndex } from "../../helpers";
 import Film from "./Film";
 import "./Films.css";
 import SearchBox from "../Search/SearchBox";
+import Error from "../Error/Error";
 
 class FilmList extends Component {
   constructor(props) {
@@ -18,20 +19,29 @@ class FilmList extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.films.length === 0 && !this.props.error.film.message) {
+      this.props.fetchFilms();
+    }
+  }
+
   onSearchChange = e => {
     this.setState({ searchTerm: e.target.value });
   };
 
   renderFilms() {
     const { searchTerm } = this.state;
+    const { error } = this.props;
+
     const filteredFilms = this.props.films.filter(film => {
       return film.title.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
+    if (error.film.message) return <Error message={error.film.message} redirect="films" />;
+
     return (
       <div>
         <SearchBox search={"films"} onSearchChange={this.onSearchChange} />
-
         <div className="tc white flex justify-around films">
           {filteredFilms.map((film, i) => {
             let id = getIndex(film.url);
@@ -50,16 +60,10 @@ class FilmList extends Component {
   render() {
     return <div>{this.renderFilms()}</div>;
   }
-
-  componentDidMount() {
-    if (this.props.films.length === 0) {
-      this.props.fetchFilms();
-    }
-  }
 }
 
 function mapStateToProps(state) {
-  return { films: state.films };
+  return { films: state.films, error: state.error };
 }
 
 function mapDispatchToProps(dispatch) {

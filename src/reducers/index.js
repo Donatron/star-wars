@@ -12,6 +12,7 @@ import StarshipReducer from "./reducer_starship";
 import SpeciesReducer from "./reducer_species";
 import SpecieReducer from "./reducer_specie";
 import LoadingReducer from "./reducer_loading";
+import ErrorReducer from "./reducer_error";
 
 const rootReducer = combineReducers({
   people: PeopleReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   selectedStarship: StarshipReducer,
   species: SpeciesReducer,
   selectedSpecie: SpecieReducer,
-  loading: LoadingReducer
+  loading: LoadingReducer,
+  error: ErrorReducer
 });
 
 export default rootReducer;

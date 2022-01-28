@@ -8,6 +8,7 @@ import { getIndex } from "../../helpers";
 import Character from "./Character";
 import "../Characters/Character.css";
 import SearchBox from "../Search/SearchBox";
+import Error from "../Error/Error";
 
 class CharacterList extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class CharacterList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.people.length === 0) {
+    if (this.props.people.length === 0 && !this.props.error.people.message) {
       this.props.fetchPeople();
     }
   }
@@ -30,18 +31,16 @@ class CharacterList extends Component {
 
   renderPeople() {
     const { searchTerm } = this.state;
+    const { error } = this.props;
     const filteredPeople = this.props.people.filter(person => {
       return person.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
+
+    if (error.people.message) return <Error message={error.people.message} redirect="characters" />
     return (
       <div className="">
-        <div className="">
-          <SearchBox
-            search={"characters"}
-            onSearchChange={this.onSearchChange}
-          />
-        </div>
+        <SearchBox search={"characters"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around characters">
           {filteredPeople.map((person, i) => {
             let id = getIndex(person.url);
@@ -62,7 +61,7 @@ class CharacterList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { people: state.people };
+  return { people: state.people, error: state.error };
 }
 
 function mapDispatchToProps(dispatch) {
