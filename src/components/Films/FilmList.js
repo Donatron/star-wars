@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchFilms } from "../../actions";
-import { getIndex } from "../../helpers";
 
-import Film from "./Film";
+import Card from "../Card/Card";
 import "./Films.css";
 import SearchBox from "../Search/SearchBox";
 import Error from "../Error/Error";
@@ -43,15 +41,9 @@ class FilmList extends Component {
       <div>
         <SearchBox search={"films"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around films">
-          {filteredFilms.map((film, i) => {
-            let id = getIndex(film.url);
-
-            return (
-              <Link to={`/films/${id}`} key={id}>
-                <Film key={film.name} id={id} name={film.name} />
-              </Link>
-            );
-          })}
+          {
+            filteredFilms.map((film, i) => <Card item={film} linkPath="films" key={film.name} />)
+          }
         </div>
       </div>
     );

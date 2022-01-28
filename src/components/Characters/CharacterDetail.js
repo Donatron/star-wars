@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchPerson, clearSelectedPerson } from "../../actions";
 import { getIndex } from "../../helpers";
 
-import Character from "./Character";
+import Card from "../Card/Card";
 import Film from "../Films/Film";
 import Vehicle from "../Vehicles/Vehicle";
 import Starship from "../Starships/Starship";
@@ -119,7 +119,6 @@ class CharacterDetail extends Component {
 
   render() {
     const { person, error } = this.props;
-    const { id } = this.props.match.params;
     const {
       name,
       height,
@@ -142,7 +141,6 @@ class CharacterDetail extends Component {
       return <div />;
     } else {
       const homeWorldId = getIndex(`"${homeworld}"`);
-      console.log(`Species: ${species}`);
       const speciesId = getIndex(`"${species}"`);
 
       return (
@@ -151,7 +149,7 @@ class CharacterDetail extends Component {
             <h2>{name ? name : ""}</h2>
           </div>
           <div className="w-100 pa3 flex justify-center character-detail">
-            <Character key={name} id={id} name={""} />
+            <Card item={person} linkPath="characters" />
 
             <div className="pa3 ml3 details">
               {name

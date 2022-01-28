@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPeople } from "../../actions/index";
-import { getIndex } from "../../helpers";
 
-import Character from "./Character";
+import Card from "../Card/Card";
 import "../Characters/Character.css";
 import SearchBox from "../Search/SearchBox";
 import Error from "../Error/Error";
@@ -38,18 +36,14 @@ class CharacterList extends Component {
 
 
     if (error.people.message) return <Error message={error.people.message} redirect="characters" />
+
     return (
       <div className="">
         <SearchBox search={"characters"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around characters">
-          {filteredPeople.map((person, i) => {
-            let id = getIndex(person.url);
-            return (
-              <Link to={`/characters/${id}`} key={id}>
-                <Character key={person.name} id={id} name={person.name} />
-              </Link>
-            );
-          })}
+          {
+            filteredPeople.map((person, i) => <Card item={person} linkPath="characters" key={person.name} />)
+          }
         </div>
       </div>
     );

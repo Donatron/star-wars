@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPlanets } from "../../actions/index";
-import { getIndex } from "../../helpers";
 
-import Planet from "./Planet";
+import Card from "../Card/Card";
 import "./Planets.css";
 import SearchBox from "../Search/SearchBox";
 
@@ -38,14 +36,9 @@ class PlanetList extends Component {
       <div>
         <SearchBox search={"planets"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around planets">
-          {filteredPlanets.map((planet, i) => {
-            let id = getIndex(planet.url);
-            return (
-              <Link to={`/planets/${id}`} key={i}>
-                <Planet key={planet.name} id={id} name={planet.name} />
-              </Link>
-            );
-          })}
+          {
+            filteredPlanets.map((planet, i) => <Card item={planet} linkPath="planets" />)
+          }
         </div>
       </div>
     );

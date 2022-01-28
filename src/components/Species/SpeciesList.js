@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchSpecies } from "../../actions";
-import { getIndex } from "../../helpers";
 
-import Species from "./Species";
+import Card from "../Card/Card";
 import "./Species.css";
 import SearchBox from "../Search/SearchBox";
 
@@ -34,19 +32,15 @@ class SpeciesList extends Component {
       return specie.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
+    console.log(filteredSpecies[0]);
+
     return (
       <div className="">
         <SearchBox search={"species"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around species">
-          {filteredSpecies.map((specie, i) => {
-            let index = getIndex(specie.url);
-
-            return (
-              <Link to={`/species/${index}`} key={index}>
-                <Species key={specie.name} id={index} name={specie.name} />
-              </Link>
-            );
-          })}
+          {
+            filteredSpecies.map((specie, i) => <Card item={specie} linkPath="species" key={specie.name} />)
+          }
         </div>
       </div>
     );

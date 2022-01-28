@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStarships } from "../../actions";
-import { getIndex } from "../../helpers";
 
-import Starship from "./Starship";
+import Card from "../Card/Card";
 import "./Starships.css";
 import SearchBox from "../Search/SearchBox";
 
@@ -38,16 +36,9 @@ class StarshipList extends Component {
       <div className="">
         <SearchBox search={"starships"} onSearchChange={this.onSearchChange} />
         <div className="tc white flex justify-around starships">
-          {filteredStarships.map((starship, i) => {
-            const id = getIndex(starship.url);
-            console.log(`Name: ${starship.name}. ID: ${id}`);
-
-            return (
-              <Link to={`/starships/${id}`} key={id}>
-                <Starship key={starship.name} id={id} name={starship.name} />
-              </Link>
-            );
-          })}
+          {
+            filteredStarships.map((starship, i) => <Card item={starship} linkPath="starships" key={starship.name} />)
+          }
         </div>
       </div>
     );

@@ -122,24 +122,25 @@ class SpeciesDetail extends Component {
     if (!name) {
       return <div />;
     } else {
-      const homeWorldId = getIndex(specie.homeworld);
+      let homeWorldId = null;
+      homeWorldId = specie.homeworld && getIndex(specie.homeworld);
 
       return (
         <div>
           {name
             ? this.renderDetails(
-                id,
-                name,
-                classification,
-                designation,
-                average_height,
-                skin_colors,
-                hair_colors,
-                eye_colors,
-                average_lifespan,
-                language,
-                homeWorldId
-              )
+              id,
+              name,
+              classification,
+              designation,
+              average_height,
+              skin_colors,
+              hair_colors,
+              eye_colors,
+              average_lifespan,
+              language,
+              homeWorldId
+            )
             : ""}
 
           <div className="center pa3 w-80 details">
