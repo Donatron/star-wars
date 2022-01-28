@@ -5,9 +5,8 @@ import { fetchSpecie, clearSelectedSpecie } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Species from "./Species";
+import CardItem from "../Card/CardItem";
 import Planet from "../Planets/Planet";
-import Character from "../Characters/Character";
-import Film from "../Films/Film";
 
 class SpeciesDetail extends Component {
   componentDidMount() {
@@ -61,15 +60,9 @@ class SpeciesDetail extends Component {
       <div>
         <h3>People</h3>
         <div className="flex flex-wrap justify-around">
-          {people.map((person, i) => {
-            let id = getIndex(person);
-
-            return (
-              <Link to={`/characters/${id}`} key={id}>
-                <Character name="" id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            people.map((person, i) => <CardItem item={person} linkPath="characters" key={person} />)
+          }
         </div>
       </div>
     );
@@ -80,15 +73,9 @@ class SpeciesDetail extends Component {
       <div>
         <h3>Appears In Films</h3>
         <div className="flex flex-wrap justify-around">
-          {films.map((film, i) => {
-            let id = getIndex(film);
-
-            return (
-              <Link to={`/films/${id}`} key={id}>
-                <Film name="" id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            films.map((film, i) => <CardItem item={film} linkPath="films" key={film} />)
+          }
         </div>
       </div>
     );

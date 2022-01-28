@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchVehicle, clearSelectedVehicle } from "../../actions";
-import { getIndex } from "../../helpers";
 import accounting from "accounting";
 
+import CardItem from "../Card/CardItem";
 import Vehicle from "./Vehicle";
-import Film from "../Films/Film";
-import Character from "../Characters/Character";
 
 class VehicleDetail extends Component {
   componentDidMount() {
@@ -64,19 +61,11 @@ class VehicleDetail extends Component {
       <div>
         <h3>Pilots</h3>
         <div className="flex flex-wrap justify-around">
-          {pilots.length !== 0 ? (
-            pilots.map((pilot, i) => {
-              let id = getIndex(pilot);
-
-              return (
-                <Link to={`/characters/${id}`} key={id}>
-                  <Character name={pilot.name} id={id} key={id} />
-                </Link>
-              );
-            })
-          ) : (
-            <p>Unknown</p>
-          )}
+          {
+            pilots.length !== 0
+              ? pilots.map((pilot, i) => <CardItem item={pilot} linkPath="characters" key={pilot} />)
+              : <p>Unknown</p>
+          }
         </div>
       </div>
     );
@@ -87,15 +76,9 @@ class VehicleDetail extends Component {
       <div>
         <h3>Appears In Films</h3>
         <div className="flex flex-wrap justify-around">
-          {films.map((film, i) => {
-            let id = getIndex(film);
-
-            return (
-              <Link to={`/films/${id}`} key={id}>
-                <Film name={film.name} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            films.map((film, i) => <CardItem item={film} linkPath="films" key={film} />)
+          }
         </div>
       </div>
     );
@@ -131,18 +114,18 @@ class VehicleDetail extends Component {
 
           {model
             ? this.renderDetails(
-                id,
-                model,
-                manufacturer,
-                vehicle_class,
-                cost_in_credits,
-                length,
-                max_atmosphering_speed,
-                crew,
-                passengers,
-                cargo_capacity,
-                consumables
-              )
+              id,
+              model,
+              manufacturer,
+              vehicle_class,
+              cost_in_credits,
+              length,
+              max_atmosphering_speed,
+              crew,
+              passengers,
+              cargo_capacity,
+              consumables
+            )
             : ""}
 
           <div className="center pa3 w-50 details">

@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchFilm, clearSelectedFilm, setDataLoading } from "../../actions";
-import { getIndex } from "../../helpers";
 import romanNumerals from "roman-numerals";
 
 import Film from "./Film";
-import Character from "../Characters/Character";
-import Planet from "../Planets/Planet";
-import Species from "../Species/Species";
-import Starship from "../Starships/Starship";
-import Vehicle from "../Vehicles/Vehicle";
+import CardItem from "../Card/CardItem";
 import Error from '../Error/Error';
 
 class FilmDetail extends Component {
@@ -45,15 +39,9 @@ class FilmDetail extends Component {
       <div>
         <h3>Characters</h3>
         <div className="flex flex-wrap justify-around mt0 pr5 pl5">
-          {characters.map(character => {
-            let id = getIndex(character);
-
-            return (
-              <Link to={`/characters/${id}`} key={id}>
-                <Character key={id} name={character.name} id={id} />
-              </Link>
-            );
-          })}
+          {
+            characters.map(character => <CardItem item={character} linkPath="characters" key={character} />)
+          }
         </div>
       </div>
     );
@@ -85,15 +73,9 @@ class FilmDetail extends Component {
       <div>
         <h3>Planets</h3>
         <div className="flex flex-wrap justify-around mt0 pr5 pl5">
-          {planets.map(planet => {
-            let id = getIndex(planet);
-
-            return (
-              <Link to={`/planets/${id}`} key={id}>
-                <Planet name={planet.name} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            planets.map(planet => <CardItem item={planet} linkPath="planets" key={planet} />)
+          }
         </div>
       </div>
     );
@@ -104,15 +86,9 @@ class FilmDetail extends Component {
       <div>
         <h3>Species</h3>
         <div className="flex flex-wrap justify-around mt0 pr5 pl5">
-          {species.map(specie => {
-            let id = getIndex(specie);
-
-            return (
-              <Link to={`/species/${id}`} key={id}>
-                <Species name={""} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            species.map(specie => <CardItem item={specie} linkPath="species" key={specie} />)
+          }
         </div>
       </div>
     );
@@ -123,15 +99,9 @@ class FilmDetail extends Component {
       <div>
         <h3>Starships</h3>
         <div className="flex flex-wrap justify-around mt0 pr5 pl5">
-          {starships.map(starship => {
-            let id = getIndex(starship);
-
-            return (
-              <Link to={`/starships/${id}`} key={id}>
-                <Starship name={""} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            starships.map(starship => <CardItem item={starship} linkPath="starships" key={starship} />)
+          }
         </div>
       </div>
     );
@@ -142,15 +112,9 @@ class FilmDetail extends Component {
       <div>
         <h3>Vehicles</h3>
         <div className="flex flex-wrap justify-around mt0 pr5 pl5">
-          {vehicles.map(vehicle => {
-            let id = getIndex(vehicle);
-
-            return (
-              <Link to={`/vehicles/${id}`} key={id}>
-                <Vehicle name={""} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            vehicles.map(vehicle => <CardItem item={vehicle} linkPath="vehicles" key={vehicle} />)
+          }
         </div>
       </div>
     );
@@ -170,8 +134,6 @@ class FilmDetail extends Component {
       starships,
       vehicles
     } = film;
-
-    console.log(error);
 
     if (error.film.message) {
       return <Error message={error.film.message} redirect="films" />

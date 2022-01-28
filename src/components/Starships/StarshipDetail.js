@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchStarship, clearSelectedStarship } from "../../actions";
-import { getIndex } from "../../helpers";
 import accounting from "accounting";
 
 import Starship from "./Starship";
-import Character from "../Characters/Character";
-import Film from "../Films/Film";
+import CardItem from "../Card/CardItem";
 
 class StarshipDetail extends Component {
   componentDidMount() {
@@ -73,19 +70,11 @@ class StarshipDetail extends Component {
       <div>
         <h3>Pilots</h3>
         <div className="flex flex-wrap justify-around">
-          {pilots.length !== 0 ? (
-            pilots.map((pilot, i) => {
-              const id = getIndex(pilot);
-
-              return (
-                <Link to={`/characters/${id}`} key={id}>
-                  <Character name={pilot.name} id={id} key={id} />
-                </Link>
-              );
-            })
-          ) : (
-            <p>Unknown</p>
-          )}
+          {
+            pilots.length !== 0
+              ? pilots.map((pilot, i) => <CardItem item={pilot} linkPath="characters" key={pilot} />)
+              : <p>Unknown</p>
+          }
         </div>
       </div>
     );
@@ -96,15 +85,9 @@ class StarshipDetail extends Component {
       <div>
         <h3>Appears In Films</h3>
         <div className="flex flex-wrap justify-around">
-          {films.map((film, i) => {
-            const id = getIndex(film);
-
-            return (
-              <Link to={`/films/${id}`} key={id}>
-                <Film name={film.name} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            films.map((film, i) => <CardItem item={film} linkPath="films" key={film} />)
+          }
         </div>
       </div>
     );
@@ -138,21 +121,21 @@ class StarshipDetail extends Component {
         <div>
           {name
             ? this.renderDetails(
-                id,
-                name,
-                model,
-                manufacturer,
-                starship_class,
-                cost_in_credits,
-                length,
-                max_atmosphering_speed,
-                crew,
-                passengers,
-                cargo_capacity,
-                consumables,
-                hyperdrive_rating,
-                MGLT
-              )
+              id,
+              name,
+              model,
+              manufacturer,
+              starship_class,
+              cost_in_credits,
+              length,
+              max_atmosphering_speed,
+              crew,
+              passengers,
+              cargo_capacity,
+              consumables,
+              hyperdrive_rating,
+              MGLT
+            )
             : ""}
 
           <div className="center pa3 w-50 details">

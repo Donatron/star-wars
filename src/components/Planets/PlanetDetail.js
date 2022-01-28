@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchPlanet, clearSelectedPlanet } from "../../actions";
-import { getIndex } from "../../helpers";
 import accounting from "accounting";
 
 import Planet from "./Planet";
-import Character from "../Characters/Character";
-import Film from "../Films/Film";
+import CardItem from "../Card/CardItem";
 
 class PlanetDetail extends Component {
   componentDidMount() {
@@ -60,15 +57,9 @@ class PlanetDetail extends Component {
       <div className="center pa3 w-50 details">
         <h3>Inhabitants</h3>
         <div className="flex flex-wrap justify-around">
-          {residents.map((resident, i) => {
-            let id = getIndex(resident);
-
-            return (
-              <Link to={`/characters/${id}`} key={id}>
-                <Character name={resident.name} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            residents.map((resident, i) => <CardItem item={resident} linkPath="characters" key={resident} />)
+          }
         </div>
       </div>
     );
@@ -79,15 +70,9 @@ class PlanetDetail extends Component {
       <div className="center pa3 w-50 details">
         <h3>Appears In Films</h3>
         <div className="flex flex-wrap justify-around">
-          {films.map((film, i) => {
-            let id = getIndex(film);
-
-            return (
-              <Link to={`/films/${id}`} key={id}>
-                <Film name={film.name} id={id} key={id} />
-              </Link>
-            );
-          })}
+          {
+            films.map((film, i) => <CardItem item={film} linkPath="films" key={film} />)
+          }
         </div>
       </div>
     );
@@ -118,17 +103,17 @@ class PlanetDetail extends Component {
         <div>
           {name
             ? this.renderDetails(
-                id,
-                name,
-                rotation_period,
-                orbital_period,
-                diameter,
-                climate,
-                gravity,
-                terrain,
-                surface_water,
-                population
-              )
+              id,
+              name,
+              rotation_period,
+              orbital_period,
+              diameter,
+              climate,
+              gravity,
+              terrain,
+              surface_water,
+              population
+            )
             : ""}
 
           {residents ? this.renderResidents(residents) : ""}

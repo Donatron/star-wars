@@ -5,9 +5,7 @@ import { fetchPerson, clearSelectedPerson } from "../../actions";
 import { getIndex } from "../../helpers";
 
 import Card from "../Card/Card";
-import Film from "../Films/Film";
-import Vehicle from "../Vehicles/Vehicle";
-import Starship from "../Starships/Starship";
+import CardItem from "../Card/CardItem";
 import Planet from "../Planets/Planet";
 import Species from "../Species/Species";
 import Error from "../Error/Error";
@@ -64,15 +62,9 @@ class CharacterDetail extends Component {
   renderFilms(films) {
     return (
       <div className="flex flex-wrap justify-around">
-        {films.map(film => {
-          const id = getIndex(film);
-
-          return (
-            <Link to={`/films/${id}`} key={id}>
-              <Film name="" id={id} key={id} />
-            </Link>
-          );
-        })}
+        {
+          films.map(film => <CardItem item={film} linkPath="films" key={film} />)
+        }
       </div>
     );
   }
@@ -80,19 +72,11 @@ class CharacterDetail extends Component {
   renderVehicles(vehicles) {
     return (
       <div className="flex flex-wrap justify-around">
-        {vehicles.length === 0 ? (
-          <p>Unknown</p>
-        ) : (
-          vehicles.map(vehicle => {
-            const id = getIndex(vehicle);
-
-            return (
-              <Link to={`/vehicles/${id}`} key={id}>
-                <Vehicle name="" id={id} key={id} />
-              </Link>
-            );
-          })
-        )}
+        {
+          vehicles.length === 0
+            ? <p>Unknown</p>
+            : vehicles.map(vehicle => <CardItem item={vehicle} linkPath="vehicles" key={vehicle} />)
+        }
       </div>
     );
   }
@@ -100,19 +84,11 @@ class CharacterDetail extends Component {
   renderStarships(starships) {
     return (
       <div className="flex flex-wrap justify-around">
-        {starships.length === 0 ? (
-          <p>Unknown</p>
-        ) : (
-          starships.map(starship => {
-            const id = getIndex(starship);
-
-            return (
-              <Link to={`/starships/${id}`} key={id}>
-                <Starship name="" id={id} key={id} />
-              </Link>
-            );
-          })
-        )}
+        {
+          starships.length === 0
+            ? <p>Unknown</p>
+            : starships.map(starship => <CardItem item={starship} linkPath="starships" key={starship} />)
+        }
       </div>
     );
   }

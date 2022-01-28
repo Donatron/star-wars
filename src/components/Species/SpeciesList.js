@@ -32,8 +32,6 @@ class SpeciesList extends Component {
       return specie.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
-    console.log(filteredSpecies[0]);
-
     return (
       <div className="">
         <SearchBox search={"species"} onSearchChange={this.onSearchChange} />
