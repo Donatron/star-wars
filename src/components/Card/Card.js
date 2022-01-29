@@ -14,7 +14,7 @@ const Card = ({ item, linkPath }) => {
           alt={name}
           className="db br2 br--top grow"
         />
-        <p>{name}: Card Component</p><br></br>
+        <p>{name}</p><br></br>
       </article>
     </Link>)
 }

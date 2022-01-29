@@ -26,6 +26,18 @@ a {
   height: auto;
 }
 
+.card-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 30px;
+}
+
+.card-list article {
+  padding: 0 20px;
+}
+
+
 .footer {
   position: absolute;
   bottom: 0;

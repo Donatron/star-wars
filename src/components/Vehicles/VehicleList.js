@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { fetchVehicles } from "../../actions";
 
 import Card from "../Card/Card";
-import "./Vehicles.css";
+// import "./Vehicles.css";
 import SearchBox from "../Search/SearchBox";
 
 class VehicleList extends Component {
